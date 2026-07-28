@@ -1,0 +1,12 @@
+torch
+diffusers
+transformers
+accelerate
+datasets
+peft
+bitsandbytes
+xformers
+safetensors
+sentencepiece
+tensorboard
+Pillow

@@ -1,0 +1,35 @@
+{
+  "shape": "almond",
+  "length": "medium",
+  "base_color": "nude",
+  "secondary_colors": [
+    "gold",
+    "navy"
+  ],
+  "finish": [
+    "glossy"
+  ],
+  "style_dimension": "mixed",
+  "primary_techniques": [
+    "curved_french"
+  ],
+  "secondary_techniques": [
+    "isolated_chrome"
+  ],
+  "motifs": [
+    "flower"
+  ],
+  "embellishments": [
+    "rhinestone"
+  ],
+  "materials": [
+    "gold"
+  ],
+  "placement": [
+    "tip",
+    "center"
+  ],
+  "design_density": "moderate",
+  "mood": "luxe",
+  "style_family_hint": "navy_nude_organic_gold"
+}

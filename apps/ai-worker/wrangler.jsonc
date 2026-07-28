@@ -1,0 +1,12 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "nuvii-ai-generator",
+  "main": "src/index.js",
+  "compatibility_date": "2026-07-27",
+  "ai": {
+    "binding": "AI"
+  },
+  "vars": {
+    "ALLOWED_ORIGINS": "http://localhost:3000"
+  }
+}
