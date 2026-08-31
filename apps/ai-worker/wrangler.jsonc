@@ -1,0 +1,10 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "nuvii-ai-generator",
+  "main": "src/index.js",
+  "compatibility_date": "2026-07-27",
+  "vars": {
+    "ALLOWED_ORIGINS": "http://localhost:3000",
+    "NUVII_MODEL_URL": "https://YOUR-GPU-INFERENCE-SERVICE.example.com"
+  }
+}

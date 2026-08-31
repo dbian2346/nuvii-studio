@@ -1,0 +1,19 @@
+.panel {
+  min-width: 0;
+  border-radius: var(--nuvii-radius-panel);
+}
+
+.glass {
+  background-color: var(--nuvii-color-surface-translucent);
+  background-image: var(--nuvii-gradient-glass);
+  border: 2px solid var(--nuvii-color-border-glass);
+  box-shadow: var(--nuvii-shadow-panel);
+  backdrop-filter: blur(var(--nuvii-blur-glass));
+  -webkit-backdrop-filter: blur(var(--nuvii-blur-glass));
+}
+
+.solid {
+  background: var(--nuvii-color-surface);
+  border: 1px solid var(--nuvii-color-border-control);
+  box-shadow: var(--nuvii-shadow-button);
+}

@@ -1,0 +1,44 @@
+.swatch {
+  width: var(--nuvii-swatch-width);
+  height: var(--nuvii-swatch-height);
+  display: inline-grid;
+  place-items: center;
+  padding: 0;
+  background: var(--nuvii-swatch-color);
+  border: 1px solid var(--nuvii-color-border-swatch);
+  border-radius: var(--nuvii-radius-swatch);
+  box-shadow: var(--nuvii-shadow-swatch);
+  cursor: pointer;
+  transition:
+    border-color var(--nuvii-transition-fast),
+    box-shadow var(--nuvii-transition-fast),
+    transform var(--nuvii-transition-fast);
+}
+
+.swatch:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.swatch:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.selected {
+  border: 2px solid var(--nuvii-color-text-secondary);
+}
+
+.add {
+  background: rgb(255 255 255 / 40%);
+  border: 2px dashed var(--nuvii-color-gray-300);
+}
+
+.swatch:focus-visible {
+  outline: none;
+  box-shadow: var(--nuvii-shadow-focus);
+}
+
+.swatch:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+  transform: none;
+}

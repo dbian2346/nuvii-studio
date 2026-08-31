@@ -1,0 +1,473 @@
+.projectsViewport {
+  min-width: 70rem;
+  min-height: 100vh;
+  padding: var(--nuvii-space-7) var(--nuvii-space-8);
+  overflow: auto;
+  background: var(--nuvii-color-canvas);
+}
+
+.projectsShell {
+  width: min(var(--nuvii-editor-width), calc(100vw - var(--nuvii-space-12)));
+  min-width: 66rem;
+  min-height: calc(100vh - 3.75rem);
+  margin-inline: auto;
+  overflow: hidden;
+  border-radius: var(--nuvii-radius-panel);
+  background: var(--nuvii-color-workspace);
+  box-shadow: 0 20px 45px -30px rgb(0 0 0 / 22%);
+}
+
+.projectsTopbar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: var(--nuvii-topbar-height);
+  padding: 0 var(--nuvii-space-5) 0 var(--nuvii-space-4);
+  background: var(--nuvii-color-topbar);
+  box-shadow: var(--nuvii-shadow-topbar);
+}
+
+.projectsWordmark {
+  color: var(--nuvii-color-black);
+  font-family: var(--nuvii-font-display);
+  font-size: var(--nuvii-font-size-title);
+  line-height: 1.3;
+  text-decoration: none;
+}
+
+.projectsWordmark:focus-visible {
+  outline: none;
+  border-radius: var(--nuvii-radius-control);
+  box-shadow: var(--nuvii-shadow-focus);
+}
+
+.libraryLocation {
+  position: absolute;
+  left: 50%;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--nuvii-space-2);
+  color: var(--nuvii-color-text-secondary);
+  font-size: var(--nuvii-font-size-label);
+  font-weight: var(--nuvii-font-weight-bold);
+  transform: translateX(-50%);
+}
+
+.projectsProfile {
+  position: absolute;
+  right: var(--nuvii-space-5);
+  display: grid;
+  width: var(--nuvii-control-height);
+  height: var(--nuvii-control-height);
+  place-items: center;
+  overflow: hidden;
+  border-radius: var(--nuvii-radius-round);
+  background: var(--nuvii-color-surface);
+}
+
+.libraryContent {
+  min-height: calc(100vh - 7.9375rem);
+  padding: var(--nuvii-space-10) var(--nuvii-space-10) var(--nuvii-space-12);
+  background-color: var(--nuvii-color-workspace);
+  background-image: radial-gradient(
+    circle,
+    var(--nuvii-color-dot) 1.5px,
+    transparent 1.6px
+  );
+  background-size: 1.6875rem 1rem;
+}
+
+.libraryIntro {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--nuvii-space-8);
+}
+
+.eyebrow,
+.dialogEyebrow {
+  margin: 0 0 var(--nuvii-space-2);
+  color: var(--nuvii-color-accent);
+  font-size: var(--nuvii-font-size-label);
+  font-weight: var(--nuvii-font-weight-bold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.libraryIntro h1 {
+  margin: 0;
+  font-family: var(--nuvii-font-display);
+  font-size: 2.5rem;
+  font-weight: var(--nuvii-font-weight-regular);
+  line-height: var(--nuvii-line-height-tight);
+}
+
+.libraryIntro > div > p:last-child {
+  margin: var(--nuvii-space-3) 0 0;
+  color: var(--nuvii-color-text-secondary);
+}
+
+.libraryControls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--nuvii-space-4);
+  margin-top: var(--nuvii-space-9);
+}
+
+.searchControl {
+  width: min(24rem, 45%);
+}
+
+.searchControl input,
+.sortControl select {
+  min-height: var(--nuvii-control-height);
+  color: var(--nuvii-color-text-secondary);
+  background: rgb(255 255 255 / 72%);
+  border: 1px solid var(--nuvii-color-border-control);
+  border-radius: var(--nuvii-radius-control);
+  font-size: var(--nuvii-font-size-label);
+  font-weight: var(--nuvii-font-weight-bold);
+  box-shadow: var(--nuvii-shadow-button);
+}
+
+.searchControl input {
+  width: 100%;
+  padding: 0 var(--nuvii-space-4);
+}
+
+.sortControl {
+  display: flex;
+  align-items: center;
+  gap: var(--nuvii-space-2);
+  color: var(--nuvii-color-text-muted);
+  font-size: var(--nuvii-font-size-label);
+  font-weight: var(--nuvii-font-weight-bold);
+}
+
+.sortControl select {
+  padding: 0 var(--nuvii-space-8) 0 var(--nuvii-space-3);
+}
+
+.searchControl input:focus-visible,
+.sortControl select:focus-visible {
+  outline: none;
+  box-shadow: var(--nuvii-shadow-focus);
+}
+
+.projectGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(18rem, 1fr));
+  gap: var(--nuvii-space-6);
+  margin-top: var(--nuvii-space-6);
+}
+
+.projectCard {
+  min-width: 0;
+  overflow: hidden;
+  background: rgb(255 255 255 / 62%);
+  border: 2px solid var(--nuvii-color-border-glass);
+  border-radius: var(--nuvii-radius-panel);
+  box-shadow: var(--nuvii-shadow-panel);
+  backdrop-filter: blur(var(--nuvii-blur-glass));
+  transition:
+    border-color var(--nuvii-transition-fast),
+    box-shadow var(--nuvii-transition-fast),
+    transform var(--nuvii-transition-fast);
+}
+
+.projectCard:has(.previewButton:hover) {
+  border-color: rgb(149 115 228 / 38%);
+  box-shadow: 0 16px 34px -18px rgb(79 58 104 / 32%);
+  transform: translateY(-2px);
+}
+
+.previewButton {
+  position: relative;
+  display: block;
+  width: 100%;
+  min-height: 15rem;
+  padding: 0;
+  overflow: hidden;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.previewButton:focus-visible {
+  outline: none;
+  box-shadow: inset var(--nuvii-shadow-focus);
+}
+
+.projectPreview {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  align-content: center;
+  gap: var(--nuvii-space-4);
+  padding: var(--nuvii-space-5) var(--nuvii-space-6);
+  background:
+    radial-gradient(circle at 50% 45%, rgb(255 255 255 / 90%), transparent 58%),
+    linear-gradient(145deg, rgb(226 226 255 / 36%), rgb(244 195 211 / 17%));
+}
+
+.previewHand {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(1.6rem, 1fr));
+  align-items: end;
+  gap: var(--nuvii-space-3);
+  min-height: 5rem;
+}
+
+.previewNail {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: var(--preview-nail-height);
+  max-height: 5.25rem;
+  filter: drop-shadow(0 8px 7px rgb(77 55 63 / 18%));
+}
+
+.previewNail > svg {
+  width: 100%;
+  height: 100%;
+}
+
+.previewLayerStack {
+  position: absolute;
+  inset: 4% 8%;
+  display: block;
+  pointer-events: none;
+}
+
+.previewLayer {
+  position: absolute;
+  top: var(--preview-layer-top);
+  left: var(--preview-layer-left);
+  display: block;
+  width: var(--preview-layer-width);
+  height: var(--preview-layer-height);
+  opacity: var(--preview-layer-opacity);
+  transform: translate(-50%, -50%) rotate(var(--preview-layer-rotation));
+}
+
+.openHint {
+  position: absolute;
+  right: var(--nuvii-space-4);
+  bottom: var(--nuvii-space-4);
+  padding: var(--nuvii-space-1) var(--nuvii-space-3);
+  color: var(--nuvii-color-focus);
+  background: rgb(255 255 255 / 84%);
+  border-radius: var(--nuvii-radius-round);
+  font-size: var(--nuvii-font-size-caption);
+  font-weight: var(--nuvii-font-weight-bold);
+  opacity: 0;
+  transform: translateY(var(--nuvii-space-1));
+  transition:
+    opacity var(--nuvii-transition-fast),
+    transform var(--nuvii-transition-fast);
+}
+
+.previewButton:hover .openHint,
+.previewButton:focus-visible .openHint {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.cardDetails {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--nuvii-space-3);
+  min-height: 5.25rem;
+  padding: var(--nuvii-space-3) var(--nuvii-space-4) var(--nuvii-space-4);
+  border-top: 1px solid rgb(255 255 255 / 74%);
+}
+
+.cardTitleGroup {
+  min-width: 0;
+}
+
+.cardTitleGroup h2 {
+  overflow: hidden;
+  margin: 0;
+  font-size: var(--nuvii-font-size-body);
+  line-height: var(--nuvii-line-height-tight);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cardTitleGroup time {
+  display: block;
+  margin-top: var(--nuvii-space-2);
+  color: var(--nuvii-color-text-muted);
+  font-size: var(--nuvii-font-size-caption);
+  font-weight: var(--nuvii-font-weight-semibold);
+}
+
+.cardActions {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: var(--nuvii-space-1);
+}
+
+.cardActions button {
+  padding-inline: var(--nuvii-space-2);
+}
+
+.deleteAction,
+.dangerButton {
+  color: var(--nuvii-color-danger);
+}
+
+.dangerButton {
+  background: rgb(157 48 87 / 9%);
+}
+
+.emptyState,
+.noResults {
+  display: grid;
+  width: min(34rem, 100%);
+  justify-items: center;
+  margin: var(--nuvii-space-12) auto 0;
+  padding: var(--nuvii-space-10);
+  text-align: center;
+  background: rgb(255 255 255 / 52%);
+  border: 2px solid var(--nuvii-color-border-glass);
+  border-radius: var(--nuvii-radius-panel);
+  box-shadow: var(--nuvii-shadow-panel);
+}
+
+.emptyArtwork {
+  display: grid;
+  width: var(--nuvii-space-12);
+  height: var(--nuvii-space-12);
+  margin-bottom: var(--nuvii-space-5);
+  place-items: center;
+  color: var(--nuvii-color-accent);
+  border-radius: var(--nuvii-radius-round);
+  background: var(--nuvii-color-selected);
+}
+
+.emptyState h2,
+.noResults h2 {
+  margin: 0;
+  font-family: var(--nuvii-font-display);
+  font-size: 1.75rem;
+  font-weight: var(--nuvii-font-weight-regular);
+}
+
+.emptyState > p:not(.eyebrow),
+.noResults p {
+  max-width: 26rem;
+  margin: var(--nuvii-space-3) 0 var(--nuvii-space-5);
+  color: var(--nuvii-color-text-secondary);
+}
+
+.libraryError {
+  padding: var(--nuvii-space-3) var(--nuvii-space-4);
+  color: var(--nuvii-color-danger);
+  background: rgb(157 48 87 / 8%);
+  border-radius: var(--nuvii-radius-control);
+}
+
+.libraryNotice {
+  padding: var(--nuvii-space-3) var(--nuvii-space-4);
+  color: var(--nuvii-color-focus);
+  background: var(--nuvii-color-selected);
+  border: 1px solid rgb(149 115 228 / 20%);
+  border-radius: var(--nuvii-radius-control);
+}
+
+.skeletonCard {
+  min-height: 20.25rem;
+  padding: var(--nuvii-space-4);
+}
+
+.skeletonPreview,
+.skeletonLine,
+.skeletonLineShort {
+  display: block;
+  background: rgb(117 115 122 / 9%);
+  border-radius: var(--nuvii-radius-control);
+}
+
+.skeletonPreview {
+  height: 15rem;
+}
+
+.skeletonLine {
+  width: 56%;
+  height: var(--nuvii-space-3);
+  margin-top: var(--nuvii-space-4);
+}
+
+.skeletonLineShort {
+  width: 34%;
+  height: var(--nuvii-space-2);
+  margin-top: var(--nuvii-space-2);
+}
+
+.dialogBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: grid;
+  place-items: center;
+  padding: var(--nuvii-space-6);
+  background: rgb(34 27 39 / 24%);
+  backdrop-filter: blur(5px);
+}
+
+.dialog {
+  width: min(29rem, 100%);
+  color: var(--nuvii-color-text);
+  background: rgb(255 255 255 / 94%);
+  border: 2px solid var(--nuvii-color-border-glass);
+  border-radius: var(--nuvii-radius-panel);
+  box-shadow: 0 24px 64px -24px rgb(28 20 34 / 50%);
+}
+
+.dialogForm {
+  display: grid;
+  gap: var(--nuvii-space-6);
+  padding: var(--nuvii-space-7);
+}
+
+.dialog h2 {
+  margin: 0;
+  font-family: var(--nuvii-font-display);
+  font-size: 1.625rem;
+  font-weight: var(--nuvii-font-weight-regular);
+}
+
+.dialog h2 + p {
+  margin: var(--nuvii-space-3) 0 0;
+  color: var(--nuvii-color-text-secondary);
+  line-height: var(--nuvii-line-height-body);
+}
+
+.dialogActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--nuvii-space-2);
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 82rem) {
+  .projectGrid {
+    grid-template-columns: repeat(2, minmax(20rem, 1fr));
+  }
+}

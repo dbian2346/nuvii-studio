@@ -1,0 +1,1549 @@
+.viewport {
+  min-width: 79rem;
+  min-height: 100vh;
+  padding: 1.875rem 2.125rem;
+  overflow: auto;
+  background: var(--nuvii-color-canvas);
+}
+
+.editorShell {
+  position: relative;
+  width: min(var(--nuvii-editor-width), calc(100vw - 4.25rem));
+  min-width: 74.5625rem;
+  height: min(var(--nuvii-editor-height), calc(100vh - 3.75rem));
+  min-height: 55rem;
+  margin-inline: auto;
+  overflow: hidden;
+  border-radius: var(--nuvii-radius-panel);
+  background: var(--nuvii-color-workspace);
+  box-shadow: 0 20px 45px -30px rgb(0 0 0 / 22%);
+}
+
+.editorChrome {
+  height: 100%;
+}
+
+.topbar {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  height: var(--nuvii-topbar-height);
+  padding: 0 var(--nuvii-space-5) 0 var(--nuvii-space-4);
+  background: var(--nuvii-color-topbar);
+  box-shadow: var(--nuvii-shadow-topbar);
+}
+
+.wordmark {
+  margin: 0;
+  color: var(--nuvii-color-black);
+  font-family: var(--nuvii-font-display);
+  font-size: var(--nuvii-font-size-title);
+  font-weight: var(--nuvii-font-weight-regular);
+  line-height: 1.3;
+}
+
+.topbarActions {
+  display: contents;
+}
+
+.saveStatus {
+  position: absolute;
+  top: 1.75rem;
+  right: 28.75rem;
+  width: 8.5rem;
+  color: var(--nuvii-color-text-muted);
+  font-size: var(--nuvii-font-size-caption);
+  font-weight: var(--nuvii-font-weight-bold);
+  text-align: right;
+}
+
+.saveButton,
+.exportButton {
+  position: absolute;
+  top: 1.0625rem;
+  min-width: 5.125rem;
+  min-height: var(--nuvii-button-height);
+  font-size: var(--nuvii-font-size-body);
+}
+
+.saveButton {
+  right: 24.4375rem;
+  min-width: 4rem;
+  background: transparent;
+  box-shadow: none;
+}
+
+.exportButton {
+  right: 7.75rem;
+}
+
+.undoButton,
+.redoButton {
+  position: absolute;
+  top: 0.9375rem;
+}
+
+.undoButton {
+  right: 21.0625rem;
+}
+
+.redoButton {
+  right: 16.25rem;
+}
+
+.profile {
+  position: absolute;
+  top: 0.9375rem;
+  right: 1.3125rem;
+  display: grid;
+  width: var(--nuvii-control-height);
+  height: var(--nuvii-control-height);
+  place-items: center;
+  overflow: hidden;
+  border-radius: var(--nuvii-radius-round);
+  background: var(--nuvii-color-surface);
+}
+
+.workspace {
+  display: grid;
+  grid-template-columns: 6.75rem minmax(40.125rem, 1fr) var(--nuvii-inspector-width);
+  gap: 1.375rem;
+  height: calc(100% - var(--nuvii-topbar-height));
+  padding: 1.875rem 1.6875rem 1.625rem 1.375rem;
+  background-color: var(--nuvii-color-workspace);
+  background-image: radial-gradient(
+    circle,
+    var(--nuvii-color-dot) 1.5px,
+    transparent 1.6px
+  );
+  background-position: 0 0;
+  background-size: 1.6875rem 1rem;
+}
+
+.toolSidebar {
+  width: var(--nuvii-sidebar-width);
+  height: min(53.1875rem, 100%);
+  padding-top: 2.3125rem;
+}
+
+.toolGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.125rem;
+}
+
+.centerStage {
+  position: relative;
+  min-width: 40.125rem;
+  min-height: 0;
+}
+
+.breadcrumbPosition {
+  position: absolute;
+  top: 1.3125rem;
+  left: 12.125rem;
+  width: 29.9375rem;
+}
+
+.breadcrumbPosition > nav {
+  width: 100%;
+  justify-content: center;
+  padding-inline: var(--nuvii-space-8);
+}
+
+.focusNailAction {
+  position: absolute;
+  top: 4.75rem;
+  left: 50%;
+  z-index: 3;
+  min-width: 7.5rem;
+  transform: translateX(-50%);
+}
+
+.focusNailAction:hover {
+  transform: translateX(-50%) translateY(-1px);
+}
+
+.nailCanvas {
+  position: absolute;
+  top: 12.375rem;
+  left: 50%;
+  display: grid;
+  width: 40.125rem;
+  gap: 4.3125rem;
+  transform: translateX(-50%);
+}
+
+.nailRow {
+  display: grid;
+  grid-template-columns: repeat(5, 6.5rem);
+  gap: 1.875rem;
+  height: 15.0625rem;
+  align-items: end;
+}
+
+.nailSurface {
+  position: relative;
+  align-self: end;
+  width: 6.5rem;
+  height: var(--nail-height);
+}
+
+.focusNailSurface {
+  width: 13.5rem;
+}
+
+.handLabel {
+  position: absolute;
+  left: -3.8125rem;
+  color: var(--nuvii-color-text-secondary);
+  font-size: 1.75rem;
+  font-weight: var(--nuvii-font-weight-bold);
+  line-height: 1;
+}
+
+.rightLabel {
+  top: 5.0625rem;
+}
+
+.leftLabel {
+  top: 24.4375rem;
+}
+
+.nailButton {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  overflow: visible;
+  background: transparent;
+  border: 0;
+  border-radius: 50% 50% 44% 44% / 13% 13% 45% 45%;
+  cursor: pointer;
+  transition:
+    filter var(--nuvii-transition-fast),
+    transform var(--nuvii-transition-fast);
+}
+
+.nailLayerStack {
+  position: absolute;
+  inset: 4% 8%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.placedLayer {
+  position: absolute;
+  top: var(--layer-top);
+  left: var(--layer-left);
+  width: var(--layer-width);
+  height: var(--layer-height);
+  min-width: 0.75rem;
+  min-height: 0.75rem;
+  padding: 0;
+  opacity: var(--layer-opacity);
+  outline: 1px solid transparent;
+  border-radius: 0.25rem;
+  cursor: grab;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) rotate(var(--layer-rotation));
+  transform-origin: center;
+  touch-action: none;
+}
+
+.placedLayer:active {
+  cursor: grabbing;
+}
+
+.placedLayer[aria-pressed="true"] {
+  outline: 1px dashed var(--nuvii-color-focus);
+  outline-offset: 0.1875rem;
+}
+
+.placedLayer:focus-visible {
+  outline: 2px solid var(--nuvii-color-focus);
+  outline-offset: 0.1875rem;
+}
+
+.layerHandle {
+  position: absolute;
+  z-index: 2;
+  width: 0.75rem;
+  height: 0.75rem;
+  padding: 0;
+  border: 2px solid var(--nuvii-color-white);
+  border-radius: var(--nuvii-radius-round);
+  background: var(--nuvii-color-accent);
+  box-shadow: 0 1px 4px rgb(0 0 0 / 18%);
+  cursor: pointer;
+  touch-action: none;
+}
+
+.layerHandle:focus-visible {
+  outline: none;
+  box-shadow: var(--nuvii-shadow-focus);
+}
+
+.rotateHandle {
+  top: -1rem;
+  left: 50%;
+  cursor: grab;
+  transform: translateX(-50%);
+}
+
+.rotateHandle::after {
+  position: absolute;
+  top: 0.625rem;
+  left: 50%;
+  width: 1px;
+  height: 0.4375rem;
+  background: var(--nuvii-color-accent);
+  content: "";
+}
+
+.resizeHandle {
+  right: -0.5rem;
+  bottom: -0.5rem;
+  cursor: nwse-resize;
+}
+
+.assetArtwork {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 2px 2px rgb(55 42 48 / 16%));
+}
+
+.nailButton:hover {
+  transform: translateY(-0.1875rem);
+}
+
+.nailButton:active {
+  transform: translateY(-0.0625rem);
+}
+
+.nailButton:focus-visible {
+  outline: none;
+  filter: drop-shadow(0 0 0.25rem rgb(111 74 200 / 75%));
+}
+
+.nailSvg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 0.75rem 0.75rem rgb(77 55 63 / 18%));
+}
+
+.nailBase {
+  stroke: rgb(198 178 170 / 42%);
+  stroke-width: 0.75;
+}
+
+.nailSelection {
+  stroke: var(--nuvii-color-text-secondary);
+  stroke-width: 1.5;
+}
+
+.inspector {
+  min-width: 0;
+  height: 100%;
+  overflow: auto;
+  border: 2px solid var(--nuvii-color-border-glass);
+  border-radius: var(--nuvii-radius-panel);
+  background-color: var(--nuvii-color-surface-translucent);
+  background-image: var(--nuvii-gradient-glass);
+  box-shadow: var(--nuvii-shadow-panel);
+  backdrop-filter: blur(var(--nuvii-blur-glass));
+  -webkit-backdrop-filter: blur(var(--nuvii-blur-glass));
+  scrollbar-color: rgb(117 115 122 / 24%) transparent;
+  scrollbar-width: thin;
+}
+
+.inspectorHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 1rem 1.5rem 0;
+}
+
+.inspectorHeader h2 {
+  margin: 0;
+  color: var(--nuvii-color-black);
+  font-size: var(--nuvii-font-size-title);
+  font-weight: var(--nuvii-font-weight-bold);
+  line-height: 1.375;
+}
+
+.inspectorHeader p {
+  margin: -0.125rem 0 0;
+  color: var(--nuvii-color-text-secondary);
+  font-size: var(--nuvii-font-size-caption);
+  font-weight: var(--nuvii-font-weight-bold);
+  line-height: 1.35;
+}
+
+.inspectorDivider {
+  height: 1px;
+  margin: 1rem 2.1875rem 1.5625rem;
+  background: rgb(117 115 122 / 17%);
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  border: 0;
+  white-space: nowrap;
+}
+
+.assetBrowserControls {
+  display: grid;
+  gap: var(--nuvii-space-3);
+  padding: 0 1.5rem var(--nuvii-space-4);
+}
+
+.assetSearch input,
+.assetFilter select {
+  width: 100%;
+  height: var(--nuvii-control-height);
+  padding: 0 var(--nuvii-space-3);
+  color: var(--nuvii-color-text-secondary);
+  border: 1px solid var(--nuvii-color-border-control);
+  border-radius: var(--nuvii-radius-control);
+  outline: none;
+  background: var(--nuvii-color-control);
+  font: inherit;
+  font-size: var(--nuvii-font-size-label);
+  font-weight: var(--nuvii-font-weight-semibold);
+}
+
+.assetSearch input:focus,
+.assetFilter select:focus {
+  box-shadow: var(--nuvii-shadow-focus);
+}
+
+.assetTabs {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--nuvii-space-1);
+  padding: var(--nuvii-space-1);
+  border-radius: var(--nuvii-radius-control);
+  background: rgb(255 255 255 / 40%);
+}
+
+.assetTabs button {
+  min-width: 0;
+  min-height: 2rem;
+  padding: 0 var(--nuvii-space-1);
+  color: var(--nuvii-color-text-muted);
+  border: 0;
+  border-radius: 0.625rem;
+  background: transparent;
+  font: inherit;
+  font-size: var(--nuvii-font-size-caption);
+  font-weight: var(--nuvii-font-weight-bold);
+  cursor: pointer;
+}
+
+.assetTabs button:hover {
+  color: var(--nuvii-color-text-secondary);
+  background: var(--nuvii-color-control-hover);
+}
+
+.assetTabs button[aria-selected="true"] {
+  color: var(--nuvii-color-accent);
+  background: var(--nuvii-color-white);
+  box-shadow: var(--nuvii-shadow-button);
+}
+
+.assetTabs button:focus-visible {
+  outline: 2px solid var(--nuvii-color-focus);
+  outline-offset: 1px;
+}
+
+.assetFilter {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: var(--nuvii-space-2);
+  color: var(--nuvii-color-text-muted);
+  font-size: var(--nuvii-font-size-caption);
+  font-weight: var(--nuvii-font-weight-bold);
+  text-transform: uppercase;
+}
+
+.assetFilter select {
+  height: 2.125rem;
+  text-transform: none;
+}
+
+.assetScroller {
+  max-height: calc(100% - 14rem);
+  padding: 0 1.5rem 1.5rem;
+  overflow-y: auto;
+  scrollbar-color: rgb(117 115 122 / 24%) transparent;
+  scrollbar-width: thin;
+}
+
+.assetSection + .assetSection {
+  margin-top: var(--nuvii-space-6);
+}
+
+.assetSectionHeading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--nuvii-space-2);
+}
+
+.assetSectionHeading h3 {
+  margin: 0;
+  color: var(--nuvii-color-text-secondary);
+  font-size: var(--nuvii-font-size-label);
+  font-weight: var(--nuvii-font-weight-bold);
+  text-transform: uppercase;
+}
+
+.assetSectionHeading span {
+  color: var(--nuvii-color-text-muted);
+  font-size: var(--nuvii-font-size-caption);
+}
+
+.assetGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--nuvii-space-2);
+}
+
+.assetCard {
+  display: grid;
+  min-width: 0;
+  padding: var(--nuvii-space-2);
+  overflow: hidden;
+  color: var(--nuvii-color-text-secondary);
+  border: 1px solid var(--nuvii-color-border-control);
+  border-radius: var(--nuvii-radius-swatch);
+  background: var(--nuvii-color-control);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background-color var(--nuvii-transition-fast),
+    border-color var(--nuvii-transition-fast),
+    transform var(--nuvii-transition-fast);
+}
+
+.assetCard:hover {
+  border-color: rgb(149 115 228 / 28%);
+  background: var(--nuvii-color-control-hover);
+  transform: translateY(-2px);
+}
+
+.assetCard:hover .assetPreview {
+  transform: scale(1.07);
+}
+
+.assetCard[aria-pressed="true"] {
+  border-color: rgb(149 115 228 / 55%);
+  background: var(--nuvii-color-selected);
+}
+
+.assetCard:focus-visible {
+  outline: none;
+  box-shadow: var(--nuvii-shadow-focus);
+}
+
+.assetPreview {
+  display: grid;
+  width: 100%;
+  aspect-ratio: 1;
+  place-items: center;
+  margin-bottom: var(--nuvii-space-1);
+  border-radius: 0.625rem;
+  background: rgb(255 255 255 / 64%);
+  transition: transform var(--nuvii-transition-fast);
+}
+
+.assetPreview .assetArtwork {
+  width: 72%;
+  height: 72%;
+}
+
+.assetCardName,
+.assetCardType {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.assetCardName {
+  font-size: var(--nuvii-font-size-caption);
+  font-weight: var(--nuvii-font-weight-bold);
+}
+
+.assetCardType {
+  color: var(--nuvii-color-text-muted);
+  font-size: 0.625rem;
+}
+
+.emptyMessage {
+  display: grid;
+  justify-items: center;
+  gap: var(--nuvii-space-2);
+  margin: var(--nuvii-space-8) 0;
+  color: var(--nuvii-color-text-muted);
+  font-size: var(--nuvii-font-size-label);
+  text-align: center;
+}
+
+.emptyMessage strong {
+  color: var(--nuvii-color-text-secondary);
+  font-size: var(--nuvii-font-size-body);
+}
+
+.emptyMessage p {
+  margin: 0;
+}
+
+.assetCard:active {
+  transform: translateY(0);
+}
+
+.layersPanelBody {
+  display: grid;
+  gap: var(--nuvii-space-5);
+  padding: 0 1.5rem 1.5rem;
+}
+
+.layerList {
+  display: grid;
+  max-height: 15rem;
+  gap: var(--nuvii-space-2);
+  overflow-y: auto;
+}
+
+.layerRow {
+  display: grid;
+  grid-template-columns: 2.625rem minmax(0, 1fr);
+  align-items: center;
+  gap: var(--nuvii-space-3);
+  min-height: 3.625rem;
+  padding: var(--nuvii-space-2);
+  color: var(--nuvii-color-text-secondary);
+  border: 1px solid var(--nuvii-color-border-control);
+  border-radius: var(--nuvii-radius-control);
+  background: var(--nuvii-color-control);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.layerRow[aria-pressed="true"] {
+  color: var(--nuvii-color-accent);
+  border-color: rgb(149 115 228 / 48%);
+  background: var(--nuvii-color-selected);
+}
+
+.layerRow:hover:not([aria-pressed="true"]) {
+  background: var(--nuvii-color-control-hover);
+}
+
+.layerRow:active {
+  background: var(--nuvii-color-selected);
+}
+
+.layerRow:focus-visible {
+  outline: none;
+  box-shadow: var(--nuvii-shadow-focus);
+}
+
+.layerThumbnail {
+  display: grid;
+  width: 2.625rem;
+  height: 2.625rem;
+  place-items: center;
+  padding: 0.375rem;
+  border-radius: 0.625rem;
+  background: rgb(255 255 255 / 70%);
+}
+
+.layerRowText {
+  display: grid;
+  min-width: 0;
+}
+
+.layerRowText strong,
+.layerRowText span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.layerRowText strong {
+  font-size: var(--nuvii-font-size-label);
+}
+
+.layerRowText span {
+  color: var(--nuvii-color-text-muted);
+  font-size: var(--nuvii-font-size-caption);
+}
+
+.layerEmptyState {
+  display: grid;
+  justify-items: center;
+  gap: var(--nuvii-space-2);
+  padding: var(--nuvii-space-10) var(--nuvii-space-6);
+  color: var(--nuvii-color-text-muted);
+  border: 1px dashed rgb(117 115 122 / 26%);
+  border-radius: var(--nuvii-radius-control);
+  text-align: center;
+}
+
+.layerEmptyState strong {
+  color: var(--nuvii-color-text-secondary);
+  font-size: var(--nuvii-font-size-body);
+}
+
+.layerEmptyState p {
+  margin: 0;
+  font-size: var(--nuvii-font-size-label);
+}
+
+.layerControls {
+  display: grid;
+  gap: var(--nuvii-space-4);
+  padding-top: var(--nuvii-space-5);
+  border-top: 1px solid rgb(117 115 122 / 17%);
+}
+
+.layerControlHeading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--nuvii-space-3);
+}
+
+.layerControlHeading p,
+.layerControlHeading strong {
+  display: block;
+  margin: 0;
+}
+
+.layerControlHeading p {
+  color: var(--nuvii-color-text-muted);
+  font-size: var(--nuvii-font-size-caption);
+  font-weight: var(--nuvii-font-weight-bold);
+  text-transform: uppercase;
+}
+
+.layerControlHeading strong {
+  color: var(--nuvii-color-text-secondary);
+  font-size: var(--nuvii-font-size-body);
+}
+
+.layerQuickActions {
+  display: flex;
+  gap: var(--nuvii-space-1);
+}
+
+.deleteLayerButton {
+  color: var(--nuvii-color-danger);
+  font-size: 1.5rem;
+}
+
+.layerSlider {
+  display: grid;
+  gap: var(--nuvii-space-2);
+}
+
+.layerSlider > span,
+.layerColourControl {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--nuvii-color-text-secondary);
+  font-size: var(--nuvii-font-size-label);
+  font-weight: var(--nuvii-font-weight-bold);
+}
+
+.layerNumberField {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.125rem;
+  color: var(--nuvii-color-text-muted);
+  font-weight: var(--nuvii-font-weight-semibold);
+}
+
+.layerNumberField input {
+  width: 3.25rem;
+  padding: 0.1875rem 0.25rem;
+  color: inherit;
+  border: 1px solid var(--nuvii-color-border-control);
+  border-radius: 0.375rem;
+  outline: none;
+  background: var(--nuvii-color-control);
+  font: inherit;
+  text-align: right;
+}
+
+.layerNumberField input:focus {
+  box-shadow: 0 0 0 2px rgb(111 74 200 / 25%);
+}
+
+.layerSlider input {
+  width: 100%;
+  accent-color: var(--nuvii-color-accent);
+}
+
+.layerColourControl input {
+  width: 2.625rem;
+  height: 2.125rem;
+  padding: 0.1875rem;
+  border: 1px solid var(--nuvii-color-border-control);
+  border-radius: 0.625rem;
+  background: var(--nuvii-color-control);
+}
+
+.layerColourStack {
+  display: grid;
+  gap: var(--nuvii-space-2);
+}
+
+.layerColourOptions {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--nuvii-space-2);
+}
+
+.layerColourOptions button {
+  height: 1.75rem;
+  padding: 0;
+  border: 2px solid var(--nuvii-color-white);
+  border-radius: 0.625rem;
+  box-shadow: var(--nuvii-shadow-swatch);
+  cursor: pointer;
+}
+
+.layerColourOptions button[aria-pressed="true"] {
+  outline: 1px solid var(--nuvii-color-text-secondary);
+  outline-offset: 1px;
+}
+
+.layerColourOptions button:focus-visible {
+  outline: 2px solid var(--nuvii-color-focus);
+  outline-offset: 2px;
+}
+
+.layerOrderActions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--nuvii-space-2);
+}
+
+.layerOrderActions button {
+  min-width: 0;
+  padding-inline: var(--nuvii-space-2);
+  font-size: var(--nuvii-font-size-caption);
+}
+
+.precisionFocus {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  overflow: hidden;
+  border-radius: inherit;
+  outline: none;
+  background-color: var(--nuvii-color-workspace);
+  background-image: radial-gradient(
+    circle,
+    var(--nuvii-color-dot) 1.5px,
+    transparent 1.6px
+  );
+  background-size: 1.6875rem 1rem;
+}
+
+.precisionFocus:fullscreen {
+  width: 100vw;
+  height: 100vh;
+  border-radius: 0;
+}
+
+.precisionHeader {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  min-height: var(--nuvii-topbar-height);
+  align-items: center;
+  gap: var(--nuvii-space-3);
+  padding: 0 var(--nuvii-space-5);
+  border-bottom: 1px solid rgb(117 115 122 / 10%);
+  background: rgb(249 249 251 / 92%);
+  box-shadow: var(--nuvii-shadow-topbar);
+  backdrop-filter: blur(var(--nuvii-blur-glass));
+}
+
+.precisionTitleBlock {
+  min-width: 15rem;
+  margin-right: auto;
+}
+
+.precisionTitleBlock span {
+  color: var(--nuvii-color-text-muted);
+  font-size: var(--nuvii-font-size-caption);
+  font-weight: var(--nuvii-font-weight-bold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.precisionTitleBlock h2 {
+  margin: 0;
+  font-family: var(--nuvii-font-display);
+  font-size: 1.125rem;
+  font-weight: var(--nuvii-font-weight-regular);
+  text-transform: capitalize;
+}
+
+.precisionHistoryActions,
+.precisionZoomControls {
+  display: flex;
+  align-items: center;
+  gap: var(--nuvii-space-1);
+}
+
+.precisionHistoryActions {
+  padding-right: var(--nuvii-space-3);
+  border-right: 1px solid rgb(117 115 122 / 14%);
+}
+
+.precisionZoomControls {
+  min-width: 16rem;
+  justify-content: center;
+}
+
+.precisionZoomControls label {
+  display: flex;
+  width: 7.5rem;
+}
+
+.precisionZoomControls input {
+  width: 100%;
+  accent-color: var(--nuvii-color-accent);
+}
+
+.precisionZoomControls output {
+  width: 3.25rem;
+  color: var(--nuvii-color-text-secondary);
+  font-size: var(--nuvii-font-size-label);
+  font-weight: var(--nuvii-font-weight-bold);
+  text-align: center;
+}
+
+.precisionWorkspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 19.5rem;
+  min-height: 0;
+  gap: var(--nuvii-space-5);
+  padding: var(--nuvii-space-5);
+}
+
+.precisionCanvas {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  border: 2px solid var(--nuvii-color-border-glass);
+  border-radius: var(--nuvii-radius-panel);
+  background: rgb(255 255 255 / 22%);
+  box-shadow: inset 0 1px 5px rgb(255 255 255 / 64%);
+}
+
+.precisionCanvasScroller {
+  display: grid;
+  height: 100%;
+  min-height: 0;
+  place-items: center;
+  padding: 8rem 10rem;
+  overflow: auto;
+}
+
+.precisionNailZoom {
+  display: grid;
+  min-width: 16rem;
+  min-height: 34rem;
+  place-items: center;
+  transform: scale(var(--precision-zoom));
+  transform-origin: center;
+  transition: transform var(--nuvii-transition-fast);
+}
+
+.precisionCanvasHint {
+  position: absolute;
+  bottom: var(--nuvii-space-4);
+  left: 50%;
+  width: max-content;
+  max-width: calc(100% - 3rem);
+  margin: 0;
+  padding: var(--nuvii-space-2) var(--nuvii-space-3);
+  color: var(--nuvii-color-text-muted);
+  border: 1px solid var(--nuvii-color-border-glass);
+  border-radius: var(--nuvii-radius-round);
+  background: rgb(255 255 255 / 82%);
+  font-size: var(--nuvii-font-size-caption);
+  font-weight: var(--nuvii-font-weight-semibold);
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+.precisionPanel {
+  display: grid;
+  grid-template-rows: auto minmax(5.5rem, auto) auto minmax(0, 1fr);
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  border: 2px solid var(--nuvii-color-border-glass);
+  border-radius: var(--nuvii-radius-panel);
+  background-color: var(--nuvii-color-surface-translucent);
+  background-image: var(--nuvii-gradient-glass);
+  box-shadow: var(--nuvii-shadow-panel);
+  backdrop-filter: blur(var(--nuvii-blur-glass));
+}
+
+.precisionPanelHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--nuvii-space-3);
+  padding: var(--nuvii-space-4) var(--nuvii-space-4) var(--nuvii-space-3);
+}
+
+.precisionPanelHeader h3,
+.precisionPanelHeader p {
+  margin: 0;
+}
+
+.precisionPanelHeader h3 {
+  font-size: var(--nuvii-font-size-body);
+}
+
+.precisionPanelHeader p {
+  color: var(--nuvii-color-text-muted);
+  font-size: var(--nuvii-font-size-caption);
+  font-weight: var(--nuvii-font-weight-bold);
+}
+
+.precisionLayerList {
+  padding: 0 var(--nuvii-space-4) var(--nuvii-space-3);
+  overflow-y: auto;
+}
+
+.precisionLayerList .layerList {
+  max-height: 10rem;
+}
+
+.precisionLayerList .layerRow {
+  min-height: 3rem;
+}
+
+.precisionLayerList .layerThumbnail {
+  width: 2.25rem;
+  height: 2.25rem;
+}
+
+.precisionLayerList .layerEmptyState {
+  gap: var(--nuvii-space-1);
+  padding: var(--nuvii-space-5) var(--nuvii-space-3);
+}
+
+.precisionTabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--nuvii-space-1);
+  margin: 0 var(--nuvii-space-4);
+  padding: var(--nuvii-space-1);
+  border-radius: var(--nuvii-radius-control);
+  background: rgb(255 255 255 / 40%);
+}
+
+.precisionTabs button {
+  min-height: 2rem;
+  color: var(--nuvii-color-text-muted);
+  border: 0;
+  border-radius: 0.625rem;
+  background: transparent;
+  font: inherit;
+  font-size: var(--nuvii-font-size-caption);
+  font-weight: var(--nuvii-font-weight-bold);
+  cursor: pointer;
+}
+
+.precisionTabs button:hover {
+  color: var(--nuvii-color-text-secondary);
+  background: var(--nuvii-color-control-hover);
+}
+
+.precisionTabs button[aria-selected="true"] {
+  color: var(--nuvii-color-accent);
+  background: var(--nuvii-color-white);
+  box-shadow: var(--nuvii-shadow-button);
+}
+
+.precisionTabs button:focus-visible {
+  outline: 2px solid var(--nuvii-color-focus);
+  outline-offset: 1px;
+}
+
+.precisionPanelBody {
+  min-height: 0;
+  padding: var(--nuvii-space-4);
+  overflow-y: auto;
+  scrollbar-color: rgb(117 115 122 / 24%) transparent;
+  scrollbar-width: thin;
+}
+
+.precisionPanelBody .layerControls {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.precisionControlEmpty {
+  display: grid;
+  gap: var(--nuvii-space-2);
+  padding: var(--nuvii-space-6) var(--nuvii-space-3);
+  color: var(--nuvii-color-text-muted);
+  text-align: center;
+}
+
+.precisionControlEmpty strong {
+  color: var(--nuvii-color-text-secondary);
+}
+
+.precisionControlEmpty p {
+  margin: 0;
+  font-size: var(--nuvii-font-size-label);
+}
+
+.precisionPositionControls {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 6.25rem;
+  align-items: center;
+  gap: var(--nuvii-space-3);
+}
+
+.precisionCoordinateFields {
+  display: grid;
+  gap: var(--nuvii-space-2);
+}
+
+.precisionCoordinateFields label {
+  display: grid;
+  grid-template-columns: 1rem minmax(0, 1fr);
+  align-items: center;
+  gap: var(--nuvii-space-2);
+  color: var(--nuvii-color-text-muted);
+  font-size: var(--nuvii-font-size-label);
+  font-weight: var(--nuvii-font-weight-bold);
+}
+
+.precisionCoordinateFields input {
+  width: 100%;
+  min-height: 2rem;
+  padding: 0 var(--nuvii-space-2);
+  color: var(--nuvii-color-text-secondary);
+  border: 1px solid var(--nuvii-color-border-control);
+  border-radius: 0.625rem;
+  outline: none;
+  background: var(--nuvii-color-control);
+  font: inherit;
+}
+
+.precisionCoordinateFields input:focus {
+  box-shadow: var(--nuvii-shadow-focus);
+}
+
+.precisionNudgeGrid {
+  display: grid;
+  grid-template: repeat(3, 2rem) / repeat(3, 2rem);
+}
+
+.precisionNudgeGrid button {
+  min-width: 2rem;
+  min-height: 2rem;
+}
+
+.nudgeUp {
+  grid-area: 1 / 2;
+}
+
+.nudgeLeft {
+  grid-area: 2 / 1;
+}
+
+.nudgeCenter {
+  display: grid;
+  grid-area: 2 / 2;
+  place-items: center;
+  color: var(--nuvii-color-text-muted);
+  font-size: var(--nuvii-font-size-caption);
+}
+
+.nudgeRight {
+  grid-area: 2 / 3;
+}
+
+.nudgeDown {
+  grid-area: 3 / 2;
+}
+
+.precisionNailSettings {
+  display: grid;
+  gap: var(--nuvii-space-6);
+}
+
+.precisionSectionHeading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--nuvii-space-3);
+}
+
+.precisionSectionHeading p,
+.precisionSectionHeading strong {
+  display: block;
+  margin: 0;
+}
+
+.precisionSectionHeading p,
+.precisionControlLabel {
+  color: var(--nuvii-color-text-muted);
+  font-size: var(--nuvii-font-size-caption);
+  font-weight: var(--nuvii-font-weight-bold);
+  text-transform: uppercase;
+}
+
+.precisionSectionHeading strong {
+  color: var(--nuvii-color-text-secondary);
+  font-size: var(--nuvii-font-size-label);
+}
+
+.precisionCustomColour {
+  display: grid;
+  width: var(--nuvii-control-height);
+  height: var(--nuvii-control-height);
+  place-items: center;
+  border: 1px solid var(--nuvii-color-border-control);
+  border-radius: var(--nuvii-radius-control);
+  background: var(--nuvii-color-control);
+}
+
+.precisionCustomColour:focus-within {
+  box-shadow: var(--nuvii-shadow-focus);
+}
+
+.precisionCustomColour input {
+  width: 2rem;
+  height: 2rem;
+  padding: 0.125rem;
+  border: 0;
+  border-radius: 0.5rem;
+  background: transparent;
+}
+
+.precisionSwatches {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--nuvii-space-2);
+}
+
+.precisionSwatch {
+  width: 100%;
+  min-width: 0;
+  height: 2.625rem;
+}
+
+.precisionControlLabel {
+  margin: 0 0 var(--nuvii-space-2);
+}
+
+.precisionFinishGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--nuvii-space-2);
+}
+
+.precisionOptionButton {
+  display: flex;
+  min-height: 2.75rem;
+  align-items: center;
+  gap: var(--nuvii-space-2);
+  padding: var(--nuvii-space-2);
+  color: var(--nuvii-color-text-secondary);
+  border: 1px solid var(--nuvii-color-border-control);
+  border-radius: var(--nuvii-radius-control);
+  background: var(--nuvii-color-control);
+  font: inherit;
+  font-size: var(--nuvii-font-size-label);
+  font-weight: var(--nuvii-font-weight-bold);
+  cursor: pointer;
+}
+
+.precisionOptionButton[aria-pressed="true"] {
+  color: var(--nuvii-color-accent);
+  border-color: rgb(149 115 228 / 38%);
+  background: var(--nuvii-color-selected);
+}
+
+.precisionOptionButton:hover:not([aria-pressed="true"]) {
+  background: var(--nuvii-color-control-hover);
+}
+
+.precisionOptionButton:active {
+  transform: translateY(0);
+}
+
+.precisionOptionButton:focus-visible {
+  outline: none;
+  box-shadow: var(--nuvii-shadow-focus);
+}
+
+.propertyNavigation {
+  display: grid;
+  gap: 0.8125rem;
+  padding-inline: 2.25rem;
+}
+
+.inspectorControls {
+  display: grid;
+  gap: 1.8125rem;
+  padding: 1.9375rem 1.5rem 1.5rem;
+}
+
+.controlGroup {
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+.controlLabel {
+  display: block;
+  width: 100%;
+  margin: 0 0 var(--nuvii-space-2);
+  color: var(--nuvii-color-text-secondary);
+  font-size: var(--nuvii-font-size-label);
+  font-weight: var(--nuvii-font-weight-bold);
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.baseColourField {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2.875rem minmax(0, 1fr) 2.0625rem;
+  align-items: center;
+  min-height: var(--nuvii-control-height-large);
+  padding: 0.3125rem 0.9375rem 0.3125rem 0.3125rem;
+  overflow: hidden;
+  color: var(--nuvii-color-text-secondary);
+  border: 1px solid var(--nuvii-color-border-control);
+  border-radius: var(--nuvii-radius-control);
+  background: var(--nuvii-color-control);
+  font-size: var(--nuvii-font-size-body);
+  font-weight: var(--nuvii-font-weight-bold);
+  cursor: pointer;
+  transition: box-shadow var(--nuvii-transition-fast);
+}
+
+.baseColourField:focus-within {
+  box-shadow: var(--nuvii-shadow-focus);
+}
+
+.baseColourPreview {
+  width: 2.875rem;
+  height: 2.875rem;
+  border: 1px solid var(--nuvii-color-border-swatch);
+  border-radius: var(--nuvii-radius-swatch);
+  box-shadow: var(--nuvii-shadow-swatch);
+}
+
+.baseColourField input,
+.addSwatch input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.swatchRow {
+  display: grid;
+  grid-template-columns: repeat(5, var(--nuvii-swatch-width));
+  gap: var(--nuvii-space-2);
+}
+
+.addSwatch {
+  position: relative;
+  display: grid;
+  width: var(--nuvii-swatch-width);
+  height: var(--nuvii-swatch-height);
+  place-items: center;
+  overflow: hidden;
+  border: 2px dashed var(--nuvii-color-gray-300);
+  border-radius: var(--nuvii-radius-swatch);
+  background: rgb(255 255 255 / 40%);
+  cursor: pointer;
+}
+
+.addSwatch:focus-within {
+  box-shadow: var(--nuvii-shadow-focus);
+}
+
+.applyButton {
+  width: 100%;
+  min-height: 2.5rem;
+  justify-content: flex-start;
+  padding-inline: var(--nuvii-space-3);
+  font-size: var(--nuvii-font-size-label);
+}
+
+.applyStack {
+  display: grid;
+  gap: var(--nuvii-space-1);
+}
+
+.shapeGrid,
+.finishGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--nuvii-space-2);
+}
+
+.lengthGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--nuvii-space-2);
+}
+
+.optionButton {
+  display: flex;
+  min-height: 3.25rem;
+  align-items: center;
+  justify-content: center;
+  gap: var(--nuvii-space-2);
+  padding: var(--nuvii-space-2);
+  color: var(--nuvii-color-text-secondary);
+  border: 1px solid var(--nuvii-color-border-control);
+  border-radius: var(--nuvii-radius-control);
+  background: var(--nuvii-color-control);
+  font-family: var(--nuvii-font-body);
+  font-size: var(--nuvii-font-size-label);
+  font-weight: var(--nuvii-font-weight-bold);
+  cursor: pointer;
+  transition:
+    background-color var(--nuvii-transition-fast),
+    box-shadow var(--nuvii-transition-fast),
+    transform var(--nuvii-transition-fast);
+}
+
+.optionButton:hover {
+  background: var(--nuvii-color-control-hover);
+  transform: translateY(-1px);
+}
+
+.optionButton:active {
+  transform: translateY(0);
+}
+
+.optionButton[aria-pressed="true"] {
+  color: var(--nuvii-color-accent);
+  border-color: rgb(149 115 228 / 38%);
+  background: var(--nuvii-color-selected);
+}
+
+.optionButton:focus-visible {
+  outline: none;
+  box-shadow: var(--nuvii-shadow-focus);
+}
+
+.shapeGlyph {
+  width: 1rem;
+  height: 1.75rem;
+  overflow: visible;
+}
+
+.shapeGlyph path {
+  fill: var(--nuvii-color-nail-default);
+  stroke: var(--nuvii-color-text-secondary);
+  stroke-width: 2;
+}
+
+.finishSample {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 1px solid rgb(117 115 122 / 20%);
+  border-radius: var(--nuvii-radius-round);
+  background-color: var(--nuvii-color-pink-200);
+}
+
+.glossy {
+  background-image: linear-gradient(135deg, #ffffff, transparent 44%);
+}
+
+.matte {
+  filter: saturate(0.72);
+}
+
+.chrome {
+  background-image: linear-gradient(135deg, #ffffff, #8e8991, #ffffff);
+}
+
+.glitter {
+  background-image: radial-gradient(#ffffff 1px, transparent 1.5px);
+  background-size: 0.375rem 0.375rem;
+}
+
+.jelly {
+  opacity: 0.58;
+}
+
+.toast {
+  position: absolute;
+  right: 2.25rem;
+  bottom: 2rem;
+  z-index: 6;
+  max-width: 22rem;
+  padding: var(--nuvii-space-3) var(--nuvii-space-4);
+  color: var(--nuvii-color-text-secondary);
+  border: 1px solid var(--nuvii-color-border-glass);
+  border-radius: var(--nuvii-radius-control);
+  background: rgb(255 255 255 / 90%);
+  box-shadow: var(--nuvii-shadow-panel);
+  font-size: var(--nuvii-font-size-label);
+  font-weight: var(--nuvii-font-weight-bold);
+}
+
+.toastError {
+  color: var(--nuvii-color-danger);
+  border-color: rgb(157 48 87 / 24%);
+  background: rgb(255 248 251 / 96%);
+}
+
+@media (max-height: 58.75rem) {
+  .viewport {
+    padding-block: var(--nuvii-space-3);
+  }
+
+  .editorShell {
+    height: 55rem;
+  }
+}

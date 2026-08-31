@@ -1,0 +1,130 @@
+:root {
+  /* Primitive palette extracted from Figma node 2:15. */
+  --nuvii-color-black: #000000;
+  --nuvii-color-white: #ffffff;
+  --nuvii-color-gray-50: #fafafc;
+  --nuvii-color-gray-75: #f9f9fb;
+  --nuvii-color-gray-100: #f7f7f7;
+  --nuvii-color-gray-200: #eeeeee;
+  --nuvii-color-gray-300: #c9c9c9;
+  --nuvii-color-gray-600: #75737a;
+  --nuvii-color-purple-500: #9573e4;
+  --nuvii-color-purple-200: #e2e2ff;
+  --nuvii-color-purple-selection: rgb(170 133 255 / 14%);
+  --nuvii-color-pink-200: #f4c3d3;
+  --nuvii-color-sage-200: #d1e0d6;
+  --nuvii-color-cream-100: #f8f2e7;
+  --nuvii-color-nail-default: #f3e7e0;
+  --nuvii-color-nail-selected: #f5e6eb;
+
+  /* Semantic colors. */
+  --nuvii-color-canvas: var(--nuvii-color-gray-200);
+  --nuvii-color-workspace: var(--nuvii-color-gray-50);
+  --nuvii-color-topbar: var(--nuvii-color-gray-75);
+  --nuvii-color-surface: var(--nuvii-color-white);
+  --nuvii-color-surface-translucent: rgb(255 255 255 / 30%);
+  --nuvii-color-control: rgb(250 250 252 / 55%);
+  --nuvii-color-control-hover: rgb(255 255 255 / 72%);
+  --nuvii-color-text: var(--nuvii-color-black);
+  --nuvii-color-text-secondary: var(--nuvii-color-gray-600);
+  --nuvii-color-text-muted: rgb(117 115 122 / 64%);
+  --nuvii-color-accent: var(--nuvii-color-purple-500);
+  --nuvii-color-selected: var(--nuvii-color-purple-selection);
+  --nuvii-color-border-glass: rgb(255 255 255 / 50%);
+  --nuvii-color-border-control: var(--nuvii-color-white);
+  --nuvii-color-border-swatch: rgb(247 247 247 / 59%);
+  --nuvii-color-focus: #6f4ac8;
+  --nuvii-color-danger: #9d3057;
+  --nuvii-color-dot: rgb(217 217 217 / 53%);
+
+  /* Typography. */
+  --nuvii-font-display: "Cinzel", Georgia, serif;
+  --nuvii-font-body: "Nunito", ui-sans-serif, system-ui, sans-serif;
+  --nuvii-font-weight-regular: 400;
+  --nuvii-font-weight-semibold: 600;
+  --nuvii-font-weight-bold: 700;
+  --nuvii-font-size-caption: 0.6875rem;
+  --nuvii-font-size-label: 0.75rem;
+  --nuvii-font-size-body: 1rem;
+  --nuvii-font-size-title: 1.5rem;
+  --nuvii-line-height-tight: 1.15;
+  --nuvii-line-height-body: 1.375;
+
+  /* Spacing follows the repeated 4/8/12/16/24/30 px Figma rhythm. */
+  --nuvii-space-0: 0;
+  --nuvii-space-1: 0.25rem;
+  --nuvii-space-2: 0.5rem;
+  --nuvii-space-3: 0.75rem;
+  --nuvii-space-4: 1rem;
+  --nuvii-space-5: 1.25rem;
+  --nuvii-space-6: 1.5rem;
+  --nuvii-space-7: 1.875rem;
+  --nuvii-space-8: 2rem;
+  --nuvii-space-9: 2.625rem;
+  --nuvii-space-10: 3rem;
+  --nuvii-space-11: 3.4375rem;
+  --nuvii-space-12: 4.25rem;
+
+  /* Shape. */
+  --nuvii-radius-swatch: 0.8125rem;
+  --nuvii-radius-control: 0.875rem;
+  --nuvii-radius-selected: 1.125rem;
+  --nuvii-radius-panel: 1.25rem;
+  --nuvii-radius-round: 999px;
+
+  /* Elevation and glass. */
+  --nuvii-shadow-panel: 0 9px 24px -7px rgb(0 0 0 / 7%),
+    inset 0 -1px 4px rgb(0 0 0 / 11%),
+    inset 0 1px 4px rgb(255 255 255 / 30%);
+  --nuvii-shadow-button: 0 2px 2px rgb(151 71 255 / 10%),
+    inset 0 1px 4px rgb(0 0 0 / 5%);
+  --nuvii-shadow-swatch: 0 0 2px rgb(0 0 0 / 21%);
+  --nuvii-shadow-focus: 0 0 0 3px rgb(255 255 255 / 90%),
+    0 0 0 6px rgb(111 74 200 / 50%);
+  --nuvii-shadow-topbar: 0 3px 12px rgb(0 0 0 / 4%);
+  --nuvii-shadow-nail: 0 15px 26px -15px rgb(77 55 63 / 38%),
+    inset 0 2px 7px rgb(255 255 255 / 55%);
+  --nuvii-shadow-nail-selected: 0 17px 31px -13px rgb(99 63 78 / 46%),
+    inset 0 2px 8px rgb(255 255 255 / 62%);
+  --nuvii-gradient-glass: linear-gradient(
+      173deg,
+      rgb(255 255 255 / 5%) 0.8%,
+      rgb(255 255 255 / 1%) 100%
+    ),
+    linear-gradient(90deg, rgb(255 255 255 / 30%), rgb(255 255 255 / 30%));
+  --nuvii-blur-glass: 4px;
+
+  /* Control and icon geometry. */
+  --nuvii-control-height: 2.625rem;
+  --nuvii-control-height-large: 3.5625rem;
+  --nuvii-button-height: 2.375rem;
+  --nuvii-tool-target: 4.25rem;
+  --nuvii-icon-small: 1.25rem;
+  --nuvii-icon-medium: 1.5rem;
+  --nuvii-icon-large: 2.1875rem;
+  --nuvii-swatch-width: 3.3125rem;
+  --nuvii-swatch-height: 3.125rem;
+  --nuvii-topbar-height: 4.1875rem;
+  --nuvii-sidebar-width: 5.5rem;
+  --nuvii-inspector-width: 21.875rem;
+  --nuvii-editor-width: 94.5rem;
+  --nuvii-editor-height: 61.375rem;
+
+  /* Interaction. Figma has no motion variables, so this is intentionally restrained. */
+  --nuvii-transition-fast: 140ms ease;
+}
+
+[data-nuvii-ui] {
+  --nuvii-font-display: var(--font-nuvii-display), "Cinzel", Georgia, serif;
+  --nuvii-font-body: var(--font-nuvii-body), "Nunito", ui-sans-serif, system-ui,
+    sans-serif;
+
+  color: var(--nuvii-color-text);
+  font-family: var(--nuvii-font-body);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --nuvii-transition-fast: 0ms;
+  }
+}

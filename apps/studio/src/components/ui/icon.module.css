@@ -1,0 +1,27 @@
+.icon {
+  flex: 0 0 auto;
+  display: inline-grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.icon img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.small {
+  width: var(--nuvii-icon-small);
+  height: var(--nuvii-icon-small);
+}
+
+.medium {
+  width: var(--nuvii-icon-medium);
+  height: var(--nuvii-icon-medium);
+}
+
+.large {
+  width: var(--nuvii-icon-large);
+  height: var(--nuvii-icon-large);
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Nuvii Nail LoRA",
+  "base_model": "segmind/SSD-1B",
+  "trigger": "NUV11NAIL",
+  "training_steps": 1200,
+  "training_resolution": 512,
+  "training_images": 140,
+  "rank": 8,
+  "checkpoints": [800, 1000, 1200],
+  "final_sha256": "5289277226d5e2d1b77b2292276079748d3a1277ddb23170bcc53a911d89b77a",
+  "checkpoint_800_sha256": "d5325080ea5976d8998816c9796ee099bd2241639dc87cff8a2634b8cecf1c2e",
+  "checkpoint_1000_sha256": "72356dadd3de65c6aa989f481b03aadbd7ec80ecd8b3b22b351bea8c1dd51422",
+  "checkpoint_1200_sha256": "5289277226d5e2d1b77b2292276079748d3a1277ddb23170bcc53a911d89b77a"
+}

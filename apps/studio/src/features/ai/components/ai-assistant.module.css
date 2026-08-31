@@ -1,0 +1,579 @@
+.aiBody {
+  height: calc(100% - 5.2rem);
+  padding: var(--nuvii-space-5);
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.briefSection,
+.referenceSection,
+.methodStack,
+.progressCard,
+.successCard,
+.candidateSection,
+.errorCard {
+  margin-bottom: var(--nuvii-space-5);
+}
+
+.sectionHeading,
+.referenceHeading,
+.resultHeading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--nuvii-space-3);
+}
+
+.sectionHeading > span,
+.resultHeading > span {
+  color: var(--nuvii-color-text-muted);
+  font-size: var(--nuvii-font-size-caption);
+  font-weight: var(--nuvii-font-weight-bold);
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--nuvii-color-accent);
+  font-size: var(--nuvii-font-size-label);
+  font-weight: var(--nuvii-font-weight-bold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.promptField {
+  display: block;
+  margin-top: var(--nuvii-space-2);
+}
+
+.promptField textarea {
+  width: 100%;
+  min-height: 7.75rem;
+  padding: var(--nuvii-space-3) var(--nuvii-space-4);
+  resize: vertical;
+  color: var(--nuvii-color-text);
+  background: rgb(255 255 255 / 68%);
+  border: 1px solid var(--nuvii-color-border-control);
+  border-radius: var(--nuvii-radius-control);
+  font-size: var(--nuvii-font-size-label);
+  font-weight: var(--nuvii-font-weight-semibold);
+  line-height: var(--nuvii-line-height-body);
+  box-shadow: var(--nuvii-shadow-button);
+}
+
+.promptField textarea::placeholder {
+  color: var(--nuvii-color-text-muted);
+}
+
+.promptField textarea:focus-visible,
+.referencePicker:has(input:focus-visible),
+.candidateCard:focus-visible,
+.qualityControl label:has(input:focus-visible) {
+  outline: none;
+  box-shadow: var(--nuvii-shadow-focus);
+}
+
+.promptField textarea:disabled {
+  opacity: 0.6;
+}
+
+.exampleChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--nuvii-space-1);
+  margin-top: var(--nuvii-space-2);
+}
+
+.exampleChips button {
+  padding: var(--nuvii-space-1) var(--nuvii-space-2);
+  color: var(--nuvii-color-text-secondary);
+  background: transparent;
+  border: 1px solid rgb(117 115 122 / 15%);
+  border-radius: var(--nuvii-radius-round);
+  font-size: var(--nuvii-font-size-caption);
+  cursor: pointer;
+}
+
+.exampleChips button:hover:not(:disabled) {
+  color: var(--nuvii-color-focus);
+  background: var(--nuvii-color-selected);
+}
+
+.exampleChips button:focus-visible {
+  outline: none;
+  box-shadow: var(--nuvii-shadow-focus);
+}
+
+.exampleChips button:active:not(:disabled) {
+  background: var(--nuvii-color-selected);
+}
+
+.exampleChips button:disabled,
+.referencePicker:has(input:disabled),
+.qualityControl:disabled label {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.referenceHeading strong,
+.referenceHeading span {
+  display: block;
+}
+
+.referenceHeading strong {
+  font-size: var(--nuvii-font-size-label);
+}
+
+.referenceHeading div > span {
+  margin-top: var(--nuvii-space-1);
+  color: var(--nuvii-color-text-muted);
+  font-size: var(--nuvii-font-size-caption);
+}
+
+.referencePicker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--nuvii-space-2);
+  min-height: var(--nuvii-control-height-large);
+  margin-top: var(--nuvii-space-2);
+  color: var(--nuvii-color-text-secondary);
+  background: rgb(255 255 255 / 42%);
+  border: 1px dashed rgb(117 115 122 / 28%);
+  border-radius: var(--nuvii-radius-control);
+  font-size: var(--nuvii-font-size-label);
+  font-weight: var(--nuvii-font-weight-bold);
+  cursor: pointer;
+}
+
+.referencePicker:hover:not(:has(input:disabled)) {
+  background: var(--nuvii-color-control-hover);
+}
+
+.referencePicker input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.referencePreview {
+  position: relative;
+  height: 7rem;
+  margin-top: var(--nuvii-space-2);
+  overflow: hidden;
+  border-radius: var(--nuvii-radius-control);
+  background: var(--nuvii-color-control);
+}
+
+.referencePreview img {
+  object-fit: cover;
+}
+
+.referencePreview > span {
+  position: absolute;
+  right: var(--nuvii-space-2);
+  bottom: var(--nuvii-space-2);
+  max-width: 80%;
+  padding: var(--nuvii-space-1) var(--nuvii-space-2);
+  overflow: hidden;
+  color: var(--nuvii-color-text-secondary);
+  background: rgb(255 255 255 / 86%);
+  border-radius: var(--nuvii-radius-round);
+  font-size: var(--nuvii-font-size-caption);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.referenceError {
+  margin: var(--nuvii-space-2) 0 0;
+  color: var(--nuvii-color-danger);
+  font-size: var(--nuvii-font-size-caption);
+}
+
+.methodStack {
+  display: grid;
+  gap: var(--nuvii-space-3);
+}
+
+.methodCard,
+.progressCard,
+.successCard,
+.candidateSection,
+.errorCard {
+  padding: var(--nuvii-space-4);
+  background: rgb(255 255 255 / 56%);
+  border: 1px solid var(--nuvii-color-border-glass);
+  border-radius: var(--nuvii-radius-control);
+  box-shadow: var(--nuvii-shadow-button);
+}
+
+.methodTitle {
+  display: flex;
+  align-items: center;
+  gap: var(--nuvii-space-2);
+}
+
+.methodTitle > div {
+  min-width: 0;
+  flex: 1;
+}
+
+.methodTitle strong,
+.methodTitle div > span {
+  display: block;
+}
+
+.methodTitle strong {
+  font-size: var(--nuvii-font-size-label);
+}
+
+.methodTitle div > span {
+  margin-top: 2px;
+  color: var(--nuvii-color-text-muted);
+  font-size: var(--nuvii-font-size-caption);
+}
+
+.nativeMark,
+.modelMark,
+.progressIcon {
+  display: grid;
+  width: var(--nuvii-space-8);
+  height: var(--nuvii-space-8);
+  flex: none;
+  place-items: center;
+  border-radius: var(--nuvii-radius-round);
+}
+
+.nativeMark {
+  color: var(--nuvii-color-focus);
+  background: var(--nuvii-color-selected);
+}
+
+.modelMark,
+.progressIcon {
+  color: var(--nuvii-color-danger);
+  background: rgb(244 195 211 / 34%);
+}
+
+.preferredBadge,
+.strategyBadge,
+.recommendedBadge {
+  padding: 2px var(--nuvii-space-2);
+  color: var(--nuvii-color-focus);
+  background: var(--nuvii-color-selected);
+  border-radius: var(--nuvii-radius-round);
+  font-size: 0.625rem;
+  font-weight: var(--nuvii-font-weight-bold);
+  text-transform: uppercase;
+}
+
+.methodCard > p {
+  margin: var(--nuvii-space-3) 0;
+  color: var(--nuvii-color-text-secondary);
+  font-size: var(--nuvii-font-size-caption);
+  line-height: var(--nuvii-line-height-body);
+}
+
+.methodCard > button {
+  width: 100%;
+}
+
+.smartMethod {
+  background: rgb(250 250 252 / 44%);
+}
+
+.qualityControl {
+  padding: 0;
+  margin: 0 0 var(--nuvii-space-3);
+  border: 0;
+}
+
+.qualityControl legend {
+  padding: 0;
+  margin-bottom: var(--nuvii-space-2);
+  color: var(--nuvii-color-text-muted);
+  font-size: var(--nuvii-font-size-caption);
+  font-weight: var(--nuvii-font-weight-bold);
+}
+
+.qualityControl > div {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--nuvii-space-1);
+}
+
+.qualityControl label {
+  position: relative;
+  border-radius: var(--nuvii-radius-control);
+  cursor: pointer;
+}
+
+.qualityControl input {
+  position: absolute;
+  opacity: 0;
+}
+
+.qualityControl label > span {
+  display: grid;
+  min-height: var(--nuvii-control-height);
+  place-content: center;
+  padding: var(--nuvii-space-1);
+  color: var(--nuvii-color-text-muted);
+  text-align: center;
+  background: var(--nuvii-color-control);
+  border: 1px solid transparent;
+  border-radius: var(--nuvii-radius-control);
+}
+
+.qualityControl input:checked + span {
+  color: var(--nuvii-color-focus);
+  background: var(--nuvii-color-selected);
+  border-color: rgb(149 115 228 / 28%);
+}
+
+.qualityControl strong,
+.qualityControl small {
+  display: block;
+}
+
+.qualityControl strong {
+  font-size: var(--nuvii-font-size-caption);
+}
+
+.qualityControl small {
+  margin-top: 2px;
+  font-size: 0.5625rem;
+}
+
+.progressCard {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--nuvii-space-3);
+  overflow: hidden;
+}
+
+.progressCard strong {
+  font-size: var(--nuvii-font-size-label);
+}
+
+.progressCard p {
+  margin: var(--nuvii-space-1) 0 0;
+  color: var(--nuvii-color-text-secondary);
+  font-size: var(--nuvii-font-size-caption);
+}
+
+.progressBar {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  overflow: hidden;
+  background: var(--nuvii-color-selected);
+}
+
+.progressBar > span {
+  display: block;
+  width: 42%;
+  height: 100%;
+  background: var(--nuvii-color-accent);
+  animation: ai-progress 1.2s ease-in-out infinite alternate;
+}
+
+@keyframes ai-progress {
+  from { transform: translateX(-25%); }
+  to { transform: translateX(165%); }
+}
+
+.resultHeading h3 {
+  margin: var(--nuvii-space-1) 0 0;
+  font-size: var(--nuvii-font-size-body);
+}
+
+.strategyBadge {
+  margin-top: var(--nuvii-space-1);
+}
+
+.successCard > p,
+.resultMessage,
+.candidateNote,
+.interpreterNote,
+.resultNotice {
+  color: var(--nuvii-color-text-secondary);
+  font-size: var(--nuvii-font-size-caption);
+  line-height: var(--nuvii-line-height-body);
+}
+
+.resultStats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--nuvii-space-2);
+  margin: var(--nuvii-space-3) 0;
+}
+
+.resultStats span {
+  padding: var(--nuvii-space-2);
+  color: var(--nuvii-color-text-muted);
+  text-align: center;
+  background: var(--nuvii-color-control);
+  border-radius: var(--nuvii-radius-control);
+  font-size: var(--nuvii-font-size-caption);
+}
+
+.resultStats strong {
+  display: block;
+  color: var(--nuvii-color-text);
+  font-size: var(--nuvii-font-size-body);
+}
+
+.resultNotice {
+  padding: var(--nuvii-space-2);
+  background: rgb(244 195 211 / 24%);
+  border-radius: var(--nuvii-radius-control);
+}
+
+.resultActions {
+  display: flex;
+  gap: var(--nuvii-space-2);
+  margin-top: var(--nuvii-space-3);
+}
+
+.candidateGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--nuvii-space-2);
+  margin: var(--nuvii-space-3) 0;
+}
+
+.candidateCard {
+  padding: 0;
+  overflow: hidden;
+  color: var(--nuvii-color-text-secondary);
+  text-align: left;
+  background: var(--nuvii-color-control);
+  border: 2px solid transparent;
+  border-radius: var(--nuvii-radius-control);
+  cursor: pointer;
+}
+
+.candidateCard[aria-pressed="true"] {
+  border-color: var(--nuvii-color-accent);
+  background: var(--nuvii-color-selected);
+}
+
+.candidateCard:hover:not([aria-pressed="true"]) {
+  border-color: rgb(149 115 228 / 28%);
+  background: var(--nuvii-color-control-hover);
+}
+
+.candidateCard:active {
+  background: var(--nuvii-color-selected);
+}
+
+.candidateImage {
+  position: relative;
+  display: block;
+  aspect-ratio: 2 / 3;
+  background: var(--nuvii-color-white);
+}
+
+.candidateImage img {
+  object-fit: cover;
+}
+
+.recommendedBadge {
+  position: absolute;
+  top: var(--nuvii-space-1);
+  left: var(--nuvii-space-1);
+  background: rgb(255 255 255 / 88%);
+}
+
+.candidateMeta {
+  display: block;
+  padding: var(--nuvii-space-2);
+}
+
+.candidateMeta strong,
+.candidateMeta > span {
+  display: block;
+}
+
+.candidateMeta strong {
+  font-size: var(--nuvii-font-size-caption);
+}
+
+.candidateMeta > span {
+  margin-top: 2px;
+  color: var(--nuvii-color-text-muted);
+  font-size: 0.5625rem;
+}
+
+.candidateSection > button {
+  width: 100%;
+}
+
+.candidateNote {
+  margin-bottom: 0;
+}
+
+.errorCard {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--nuvii-space-2) var(--nuvii-space-3);
+  border-color: rgb(157 48 87 / 18%);
+  background: rgb(157 48 87 / 6%);
+}
+
+.errorCard > span {
+  display: grid;
+  width: var(--nuvii-space-6);
+  height: var(--nuvii-space-6);
+  place-items: center;
+  color: var(--nuvii-color-white);
+  border-radius: var(--nuvii-radius-round);
+  background: var(--nuvii-color-danger);
+  font-weight: var(--nuvii-font-weight-bold);
+}
+
+.errorCard strong {
+  color: var(--nuvii-color-danger);
+  font-size: var(--nuvii-font-size-label);
+}
+
+.errorCard p {
+  margin: var(--nuvii-space-1) 0 0;
+  color: var(--nuvii-color-text-secondary);
+  font-size: var(--nuvii-font-size-caption);
+  line-height: var(--nuvii-line-height-body);
+}
+
+.errorCard button {
+  grid-column: 2;
+  justify-self: start;
+}
+
+.privacyNote {
+  margin: 0;
+  color: var(--nuvii-color-text-muted);
+  font-size: var(--nuvii-font-size-caption);
+  line-height: var(--nuvii-line-height-body);
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .progressBar > span {
+    animation: none;
+    transform: translateX(70%);
+  }
+}
