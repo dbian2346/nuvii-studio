@@ -8,6 +8,7 @@ import {
   type CSSProperties,
   type KeyboardEvent,
 } from "react";
+import { Button } from "@/components/ui/button";
 import { ColorSwatch } from "@/components/ui/color-swatch";
 import { Icon } from "@/components/ui/icon";
 import { IconButton } from "@/components/ui/icon-button";
@@ -37,6 +38,7 @@ interface PrecisionNailFocusProps {
   onClose: () => void;
   onDeleteLayer: (layerId: string) => void;
   onDuplicateLayer: (layerId: string) => void;
+  onExportNail: () => Promise<void>;
   onMoveLayer: (layerId: string, direction: "forward" | "backward") => void;
   onRedo: () => void;
   onSelectLayer: (layerId: string) => void;
@@ -116,6 +118,7 @@ export function PrecisionNailFocus({
   onClose,
   onDeleteLayer,
   onDuplicateLayer,
+  onExportNail,
   onMoveLayer,
   onRedo,
   onSelectLayer,
@@ -131,7 +134,12 @@ export function PrecisionNailFocus({
     selectedLayerId ? "layer" : "nail",
   );
   const [fullscreenSupported, setFullscreenSupported] = useState(false);
+  const [fullscreenError, setFullscreenError] = useState("");
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [nailExportStatus, setNailExportStatus] = useState<
+    { message: string; tone: "error" | "success" } | null
+  >(null);
+  const [nailExporting, setNailExporting] = useState(false);
   const [zoom, setZoom] = useState(100);
   const canvasStyle: PrecisionCanvasStyle = {
     "--precision-zoom": `${zoom / 100}`,
@@ -165,10 +173,39 @@ export function PrecisionNailFocus({
 
   async function toggleFullscreen() {
     if (!dialogRef.current || !fullscreenSupported) return;
-    if (document.fullscreenElement === dialogRef.current) {
-      await document.exitFullscreen();
-    } else {
-      await dialogRef.current.requestFullscreen();
+    setNailExportStatus(null);
+    setFullscreenError("");
+    try {
+      if (document.fullscreenElement === dialogRef.current) {
+        await document.exitFullscreen();
+      } else {
+        await dialogRef.current.requestFullscreen();
+      }
+    } catch {
+      setFullscreenError(
+        "Fullscreen is unavailable right now. Precision editing is still available in this window.",
+      );
+    }
+  }
+
+  async function exportFocusedNail() {
+    setFullscreenError("");
+    setNailExporting(true);
+    setNailExportStatus(null);
+    try {
+      await onExportNail();
+      setNailExportStatus({
+        message: "Single-nail PNG downloaded.",
+        tone: "success",
+      });
+    } catch (error) {
+      const detail = error instanceof Error ? error.message : "The nail PNG could not be created.";
+      setNailExportStatus({
+        message: `${detail} Your design is safe. Try again in a current browser.`,
+        tone: "error",
+      });
+    } finally {
+      setNailExporting(false);
     }
   }
 
@@ -254,8 +291,14 @@ export function PrecisionNailFocus({
           </IconButton>
         </div>
 
+        <Button loading={nailExporting} onClick={() => void exportFocusedNail()} size="compact">
+          {nailExporting ? "Exporting…" : "Export Nail"}
+        </Button>
+
         <IconButton
-          aria-label={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
+          aria-label={!fullscreenSupported
+            ? "Fullscreen unavailable in this browser"
+            : isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
           disabled={!fullscreenSupported}
           onClick={() => void toggleFullscreen()}
           size="compact"
@@ -270,6 +313,21 @@ export function PrecisionNailFocus({
         >
           <span aria-hidden="true">×</span>
         </IconButton>
+        {nailExportStatus ? (
+          <span
+            className={`${styles.precisionExportMessage} ${
+              nailExportStatus.tone === "error" ? styles.precisionExportError : ""
+            }`}
+            role={nailExportStatus.tone === "error" ? "alert" : "status"}
+          >
+            {nailExportStatus.message}
+          </span>
+        ) : null}
+        {fullscreenError ? (
+          <span className={`${styles.precisionExportMessage} ${styles.precisionExportError}`} role="alert">
+            {fullscreenError}
+          </span>
+        ) : null}
       </header>
 
       <div className={styles.precisionWorkspace}>

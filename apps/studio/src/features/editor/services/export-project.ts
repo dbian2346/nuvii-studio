@@ -1,5 +1,5 @@
 import { ASSET_BY_ID } from "../domain/asset-data";
-import { SHAPE_PATHS } from "../domain/editor-data";
+import { NAIL_DEFINITIONS, SHAPE_PATHS } from "../domain/editor-data";
 import type {
   AssetDefinition,
   AssetPaint,
@@ -108,8 +108,12 @@ function layerMarkup(layer: NailLayer, clipId: string): string {
   </g>`;
 }
 
+function nailLengthScale(nail: Nail): number {
+  return nail.length === "short" ? 0.74 : nail.length === "medium" ? 0.87 : 1;
+}
+
 function nailMarkup(nail: Nail, index: number, x: number, y: number): string {
-  const lengthScale = nail.length === "short" ? 0.74 : nail.length === "medium" ? 0.87 : 1;
+  const lengthScale = nailLengthScale(nail);
   const path = SHAPE_PATHS[nail.shape];
   return `<g transform="translate(${x} ${y}) scale(1.04 ${1.34 * lengthScale})">
     <defs>
@@ -127,7 +131,7 @@ function nailMarkup(nail: Nail, index: number, x: number, y: number): string {
 }
 
 export function createProjectSvg(project: EditorProject): string {
-  const nails = Object.values(project.nails);
+  const nails = NAIL_DEFINITIONS.map(({ id }) => project.nails[id]);
   const rows = [nails.slice(0, 5), nails.slice(5, 10)];
   const content = rows
     .flatMap((row, rowIndex) =>
@@ -149,8 +153,22 @@ export function createProjectSvg(project: EditorProject): string {
   </svg>`;
 }
 
-export async function downloadProjectPng(project: EditorProject): Promise<void> {
-  const svg = createProjectSvg(project);
+export function createNailSvg(nail: Nail): string {
+  const exportScale = 3 / nailLengthScale(nail);
+  const offsetX = 260 - 52 * exportScale;
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="520" height="760" viewBox="0 0 520 760">
+    <g transform="translate(${offsetX} 20) scale(${exportScale})">
+      ${nailMarkup(nail, 0, 0, 0)}
+    </g>
+  </svg>`;
+}
+
+async function downloadSvgPng(
+  svg: string,
+  width: number,
+  height: number,
+  filename: string,
+): Promise<void> {
   const svgBlob = new Blob([svg], { type: "image/svg+xml;charset=utf-8" });
   const svgUrl = URL.createObjectURL(svgBlob);
 
@@ -162,8 +180,8 @@ export async function downloadProjectPng(project: EditorProject): Promise<void> 
       candidate.src = svgUrl;
     });
     const canvas = document.createElement("canvas");
-    canvas.width = 1800;
-    canvas.height = 1050;
+    canvas.width = width;
+    canvas.height = height;
     const context = canvas.getContext("2d");
     if (!context) throw new Error("This browser cannot create the PNG export.");
     context.drawImage(image, 0, 0, canvas.width, canvas.height);
@@ -177,10 +195,35 @@ export async function downloadProjectPng(project: EditorProject): Promise<void> 
     const pngUrl = URL.createObjectURL(pngBlob);
     const link = document.createElement("a");
     link.href = pngUrl;
-    link.download = `${slugify(project.name)}.png`;
-    link.click();
-    URL.revokeObjectURL(pngUrl);
+    link.download = filename;
+    link.hidden = true;
+    document.body.append(link);
+    try {
+      link.click();
+      await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
+    } finally {
+      link.remove();
+      URL.revokeObjectURL(pngUrl);
+    }
   } finally {
     URL.revokeObjectURL(svgUrl);
   }
+}
+
+export async function downloadProjectPng(project: EditorProject): Promise<void> {
+  await downloadSvgPng(
+    createProjectSvg(project),
+    1800,
+    1050,
+    `${slugify(project.name)}.png`,
+  );
+}
+
+export async function downloadNailPng(nail: Nail, projectName: string): Promise<void> {
+  await downloadSvgPng(
+    createNailSvg(nail),
+    520,
+    760,
+    `${slugify(projectName)}-${nail.hand}-${slugify(nail.label)}.png`,
+  );
 }

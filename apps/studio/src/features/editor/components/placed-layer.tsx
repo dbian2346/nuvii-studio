@@ -1,5 +1,6 @@
 import {
   memo,
+  useEffect,
   useRef,
   useState,
   type CSSProperties,
@@ -75,6 +76,7 @@ export const PlacedLayer = memo(function PlacedLayer({
   const asset = ASSET_BY_ID.get(layer.assetId);
   const interaction = useRef<Interaction | null>(null);
   const draftRef = useRef<LayerTransform | null>(null);
+  const stopInteraction = useRef<(() => void) | null>(null);
   const [draft, setDraft] = useState<LayerTransform | null>(null);
   const current = draft ?? transformOf(layer);
   const style: PlacedLayerStyle = {
@@ -85,6 +87,12 @@ export const PlacedLayer = memo(function PlacedLayer({
     "--layer-top": `${(current.y / 180) * 100}%`,
     "--layer-width": `${current.width}%`,
   };
+
+  useEffect(() => () => {
+    stopInteraction.current?.();
+    interaction.current = null;
+    draftRef.current = null;
+  }, []);
 
   if (!asset && !layer.imageData) return null;
 
@@ -138,12 +146,13 @@ export const PlacedLayer = memo(function PlacedLayer({
 
   function beginInteraction(event: ReactPointerEvent<HTMLElement>, mode: InteractionMode) {
     if (event.button !== 0) return;
-    const nailSurface = event.currentTarget.closest<HTMLElement>("[data-nail-surface]");
-    if (!nailSurface) return;
+    const nailLayerStack = event.currentTarget.closest<HTMLElement>("[data-nail-layer-stack]");
+    if (!nailLayerStack) return;
+    stopInteraction.current?.();
     event.preventDefault();
     event.stopPropagation();
     onSelect(nailId, layer.id);
-    const nailRect = nailSurface.getBoundingClientRect();
+    const nailRect = nailLayerStack.getBoundingClientRect();
     const centerX = nailRect.left + (layer.x / 100) * nailRect.width;
     const centerY = nailRect.top + (layer.y / 180) * nailRect.height;
     interaction.current = {
@@ -166,11 +175,16 @@ export const PlacedLayer = memo(function PlacedLayer({
     };
     const finish = (pointerEvent: PointerEvent) => {
       if (pointerEvent.pointerId !== event.pointerId) return;
+      cleanup();
+      completeInteraction();
+    };
+    const cleanup = () => {
       window.removeEventListener("pointermove", move);
       window.removeEventListener("pointerup", finish);
       window.removeEventListener("pointercancel", finish);
-      completeInteraction();
+      if (stopInteraction.current === cleanup) stopInteraction.current = null;
     };
+    stopInteraction.current = cleanup;
     window.addEventListener("pointermove", move, { passive: false });
     window.addEventListener("pointerup", finish);
     window.addEventListener("pointercancel", finish);

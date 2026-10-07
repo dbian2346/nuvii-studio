@@ -23,6 +23,7 @@ const QUALITY_OPTIONS: readonly { label: string; value: AiQualityMode; detail: s
   { label: "Balanced", value: "balanced", detail: "2 candidates" },
   { label: "Quality", value: "quality", detail: "3 candidates" },
 ] as const;
+const REFERENCE_IMAGE_TYPES = new Set(["image/jpeg", "image/png", "image/webp"]);
 
 interface ReferenceImage {
   dataURI: string;
@@ -43,6 +44,23 @@ function readImage(file: File): Promise<string> {
       : reject(new Error("The reference image could not be read."));
     reader.onerror = () => reject(new Error("The reference image could not be read."));
     reader.readAsDataURL(file);
+  });
+}
+
+function verifyImage(file: File): Promise<void> {
+  return new Promise((resolve, reject) => {
+    const source = URL.createObjectURL(file);
+    const image = new window.Image();
+    const cleanUp = () => URL.revokeObjectURL(source);
+    image.onload = () => {
+      cleanUp();
+      resolve();
+    };
+    image.onerror = () => {
+      cleanUp();
+      reject(new Error("The reference file is not a readable image."));
+    };
+    image.src = source;
   });
 }
 
@@ -80,7 +98,7 @@ export function AiAssistant({ nail, onApply, onViewLayers }: AiAssistantProps) {
     const file = event.target.files?.[0];
     event.target.value = "";
     if (!file) return;
-    if (!file.type.startsWith("image/")) {
+    if (!REFERENCE_IMAGE_TYPES.has(file.type)) {
       setReferenceError(
         "Nuvii couldn't use that reference. Your design is safe. Choose a PNG, JPEG, or WebP image.",
       );
@@ -94,6 +112,7 @@ export function AiAssistant({ nail, onApply, onViewLayers }: AiAssistantProps) {
     }
     setReferenceLoading(true);
     try {
+      await verifyImage(file);
       setReference({ dataURI: await readImage(file), name: file.name });
       setReferenceError("");
       resetResult();

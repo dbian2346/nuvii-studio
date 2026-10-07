@@ -49,6 +49,20 @@ function commitProject(state: EditorState, project: EditorProject): EditorState 
   };
 }
 
+function selectionForProject(state: EditorState, project: EditorProject) {
+  const selectedNailId = project.nails[state.selectedNailId]
+    ? state.selectedNailId
+    : "right-index";
+  const selectedLayerId = state.selectedLayerId
+    && project.nails[selectedNailId].layers.some(
+      (layer) => layer.id === state.selectedLayerId,
+    )
+    ? state.selectedLayerId
+    : null;
+
+  return { selectedLayerId, selectedNailId };
+}
+
 export function editorReducer(state: EditorState, action: EditorAction): EditorState {
   switch (action.type) {
     case "hydrate":
@@ -205,6 +219,7 @@ export function editorReducer(state: EditorState, action: EditorAction): EditorS
       return {
         ...state,
         project: previous,
+        ...selectionForProject(state, previous),
         past: state.past.slice(0, -1),
         future: [state.project, ...state.future].slice(0, HISTORY_LIMIT),
       };
@@ -216,6 +231,7 @@ export function editorReducer(state: EditorState, action: EditorAction): EditorS
       return {
         ...state,
         project: next,
+        ...selectionForProject(state, next),
         past: [...state.past, state.project].slice(-HISTORY_LIMIT),
         future: state.future.slice(1),
       };

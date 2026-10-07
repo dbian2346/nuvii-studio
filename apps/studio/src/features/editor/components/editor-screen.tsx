@@ -18,7 +18,7 @@ import type {
   NailLayerPatch,
 } from "../domain/types";
 import { useEditor } from "../hooks/use-editor";
-import { downloadProjectPng } from "../services/export-project";
+import { downloadNailPng, downloadProjectPng } from "../services/export-project";
 import { AssetBrowser } from "./asset-browser";
 import { EditorInspector } from "./editor-inspector";
 import { LayersPanel } from "./layers-panel";
@@ -86,6 +86,11 @@ export function EditorScreen() {
   const handleSave = useCallback(() => {
     if (saveNow()) showNotice("Project saved locally.");
   }, [saveNow, showNotice]);
+
+  const handleNailExport = useCallback(
+    () => downloadNailPng(selectedNail, state.project.name),
+    [selectedNail, state.project.name],
+  );
 
   const selectNail = useCallback((nailId: NailId) => {
     dispatch({ type: "select-nail", nailId });
@@ -300,6 +305,7 @@ export function EditorScreen() {
             onClose={() => setPrecisionFocusOpen(false)}
             onDeleteLayer={deleteLayer}
             onDuplicateLayer={duplicateLayer}
+            onExportNail={handleNailExport}
             onMoveLayer={moveLayer}
             onRedo={redo}
             onSelectLayer={selectSelectedLayer}

@@ -39,7 +39,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <body
-        suppressHydrationWarning
         className={`${nuviiDisplay.variable} ${nuviiBody.variable} ${inter.variable} ${displayFallback.variable}`}
       >
         {children}

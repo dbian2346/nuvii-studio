@@ -471,3 +471,79 @@
     grid-template-columns: repeat(2, minmax(20rem, 1fr));
   }
 }
+
+@media (max-width: 70rem) {
+  .projectsViewport {
+    min-width: 0;
+    padding: var(--nuvii-space-4);
+  }
+
+  .projectsShell {
+    width: 100%;
+    min-width: 0;
+    min-height: calc(100vh - var(--nuvii-space-8));
+  }
+
+  .libraryContent {
+    padding: var(--nuvii-space-8) var(--nuvii-space-6) var(--nuvii-space-10);
+  }
+
+  .projectGrid {
+    grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+  }
+}
+
+@media (max-width: 38rem) {
+  .projectsViewport {
+    padding: 0;
+  }
+
+  .projectsShell {
+    min-height: 100vh;
+    border-radius: 0;
+  }
+
+  .projectsTopbar {
+    height: auto;
+    min-height: var(--nuvii-topbar-height);
+    flex-wrap: wrap;
+    gap: var(--nuvii-space-2);
+    padding-block: var(--nuvii-space-3);
+  }
+
+  .libraryLocation,
+  .projectsProfile {
+    position: static;
+  }
+
+  .libraryLocation {
+    margin-left: auto;
+    transform: none;
+  }
+
+  .projectsProfile {
+    display: none;
+  }
+
+  .libraryContent {
+    padding: var(--nuvii-space-6) var(--nuvii-space-4) var(--nuvii-space-8);
+  }
+
+  .libraryIntro,
+  .libraryControls {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .libraryIntro > button {
+    align-self: flex-start;
+  }
+
+  .searchControl {
+    width: 100%;
+  }
+
+  .projectGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

@@ -948,6 +948,27 @@
   text-align: center;
 }
 
+.precisionExportMessage {
+  position: absolute;
+  top: calc(100% + var(--nuvii-space-2));
+  right: var(--nuvii-space-5);
+  max-width: 25rem;
+  padding: var(--nuvii-space-2) var(--nuvii-space-3);
+  color: var(--nuvii-color-text-secondary);
+  border: 1px solid var(--nuvii-color-border-glass);
+  border-radius: var(--nuvii-radius-control);
+  background: rgb(255 255 255 / 94%);
+  box-shadow: var(--nuvii-shadow-button);
+  font-size: var(--nuvii-font-size-caption);
+  font-weight: var(--nuvii-font-weight-bold);
+}
+
+.precisionExportError {
+  color: var(--nuvii-color-danger);
+  border-color: rgb(157 48 87 / 24%);
+  background: rgb(255 248 251 / 96%);
+}
+
 .precisionWorkspace {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 19.5rem;
@@ -1545,5 +1566,211 @@
 
   .editorShell {
     height: 55rem;
+  }
+}
+
+@media (max-width: 78.999rem) {
+  .viewport {
+    min-width: 0;
+    padding: var(--nuvii-space-4);
+    overflow: visible;
+  }
+
+  .editorShell {
+    width: 100%;
+    min-width: 0;
+    height: auto;
+    min-height: calc(100vh - var(--nuvii-space-8));
+    overflow: visible;
+  }
+
+  .editorChrome {
+    height: auto;
+    min-height: inherit;
+  }
+
+  .topbar {
+    height: auto;
+    min-height: var(--nuvii-topbar-height);
+    flex-wrap: wrap;
+    gap: var(--nuvii-space-2);
+    padding-block: var(--nuvii-space-3);
+  }
+
+  .topbarActions {
+    display: flex;
+    align-items: center;
+    gap: var(--nuvii-space-2);
+    margin-left: auto;
+  }
+
+  .saveStatus,
+  .saveButton,
+  .exportButton,
+  .undoButton,
+  .redoButton,
+  .profile {
+    position: static;
+    top: auto;
+    right: auto;
+  }
+
+  .saveStatus {
+    width: auto;
+  }
+
+  .workspace {
+    grid-template-areas:
+      "tools center"
+      "inspector inspector";
+    grid-template-columns: 5rem minmax(0, 1fr);
+    grid-template-rows: 50rem 34rem;
+    height: auto;
+    min-height: calc(100vh - var(--nuvii-topbar-height));
+    padding: var(--nuvii-space-4);
+  }
+
+  .toolSidebar {
+    grid-area: tools;
+    width: 100%;
+    height: 100%;
+  }
+
+  .centerStage {
+    grid-area: center;
+    min-width: 0;
+    overflow: auto;
+    scrollbar-color: rgb(117 115 122 / 24%) transparent;
+    scrollbar-width: thin;
+  }
+
+  .breadcrumbPosition {
+    left: 50%;
+    width: min(29.9375rem, calc(100% - var(--nuvii-space-6)));
+    transform: translateX(-50%);
+  }
+
+  .nailCanvas {
+    left: 4.25rem;
+    transform: none;
+  }
+
+  .inspector {
+    grid-area: inspector;
+    height: 34rem;
+  }
+
+  .precisionFocus {
+    position: fixed;
+    inset: var(--nuvii-space-2);
+    width: auto;
+    height: auto;
+    border-radius: var(--nuvii-radius-panel);
+  }
+}
+
+@media (max-width: 52rem) {
+  .precisionHeader {
+    flex-wrap: wrap;
+    padding-block: var(--nuvii-space-3);
+  }
+
+  .precisionTitleBlock {
+    width: 100%;
+    margin-right: 0;
+  }
+
+  .precisionZoomControls {
+    min-width: 13rem;
+    flex: 1;
+  }
+
+  .precisionWorkspace {
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(28rem, 1fr) minmax(28rem, auto);
+    overflow: auto;
+  }
+}
+
+@media (max-width: 44rem) {
+  .viewport {
+    padding: 0;
+  }
+
+  .editorShell {
+    min-height: 100vh;
+    border-radius: 0;
+  }
+
+  .topbarActions {
+    width: 100%;
+    margin-left: 0;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+  }
+
+  .saveStatus {
+    order: 10;
+    width: 100%;
+    text-align: right;
+  }
+
+  .profile {
+    display: none;
+  }
+
+  .workspace {
+    grid-template-areas:
+      "tools"
+      "center"
+      "inspector";
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto 48rem 34rem;
+    gap: var(--nuvii-space-3);
+    padding: var(--nuvii-space-3);
+  }
+
+  .toolSidebar {
+    height: auto;
+    padding-top: 0;
+  }
+
+  .toolGroup {
+    flex-direction: row;
+    justify-content: center;
+    gap: var(--nuvii-space-2);
+  }
+
+  .centerStage {
+    min-height: 48rem;
+  }
+
+  .breadcrumbPosition > nav {
+    width: min(21rem, calc(100vw - var(--nuvii-space-8)));
+    padding-inline: var(--nuvii-space-3);
+    white-space: nowrap;
+  }
+
+  .breadcrumbPosition li:nth-child(2) {
+    display: none;
+  }
+
+  .precisionFocus {
+    inset: 0;
+    border-radius: 0;
+  }
+
+  .precisionHistoryActions {
+    padding-right: 0;
+    border-right: 0;
+  }
+
+  .precisionWorkspace {
+    gap: var(--nuvii-space-3);
+    padding: var(--nuvii-space-3);
+  }
+
+  .precisionCanvasScroller {
+    padding: 6rem 4rem;
   }
 }

@@ -129,7 +129,7 @@ export const NailSurface = memo(function NailSurface({
         </svg>
       </button>
 
-      <div className={styles.nailLayerStack}>
+      <div className={styles.nailLayerStack} data-nail-layer-stack>
         {nail.layers.map((layer) => (
           <PlacedLayer
             key={layer.id}

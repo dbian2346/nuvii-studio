@@ -1,0 +1,58 @@
+.page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: var(--nuvii-space-6, 1.5rem);
+  color: #3f3d42;
+  background: #f4f4f7;
+  font-family: var(--nuvii-font-body, system-ui, sans-serif);
+}
+
+.card {
+  width: min(32rem, 100%);
+  padding: 2rem;
+  text-align: center;
+  border: 1px solid rgb(117 115 122 / 18%);
+  border-radius: 1.25rem;
+  background: rgb(255 255 255 / 88%);
+  box-shadow: 0 20px 45px -30px rgb(0 0 0 / 22%);
+}
+
+.eyebrow {
+  margin: 0;
+  color: #9573e4;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.card h1 {
+  margin: 0.75rem 0;
+  color: #181719;
+  font-family: var(--nuvii-font-display, Georgia, serif);
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.card p:not(.eyebrow) {
+  margin: 0 0 1.5rem;
+  line-height: 1.55;
+}
+
+.card button {
+  min-height: 2.5rem;
+  padding: 0.5rem 1rem;
+  color: #fff;
+  border: 0;
+  border-radius: 0.65rem;
+  background: #9573e4;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.card button:focus-visible {
+  outline: 3px solid rgb(149 115 228 / 36%);
+  outline-offset: 3px;
+}

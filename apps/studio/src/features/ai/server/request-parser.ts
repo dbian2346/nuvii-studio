@@ -6,6 +6,11 @@ import type {
 } from "@/features/editor/domain/types";
 import type { AiQualityMode } from "../domain/types";
 
+const DEFAULT_BASE_COLOR = "#f7dce5";
+const HEX_COLOR = /^#[0-9a-f]{6}$/i;
+const MAX_REFERENCE_DATA_URI_LENGTH = 5_600_000;
+const REFERENCE_DATA_URI = /^data:image\/(?:jpeg|png|webp);base64,[a-z0-9+/=]+$/i;
+
 export interface ParsedAiRequest {
   baseColor: string;
   forceDiffusion: boolean;
@@ -82,8 +87,18 @@ function qualityMode(value: unknown): AiQualityMode {
   }
 }
 
-function stringArray(value: unknown): string[] | undefined {
-  return Array.isArray(value) && value.every((item) => typeof item === "string")
+function colorArray(value: unknown): string[] | undefined {
+  if (!Array.isArray(value)) return undefined;
+  const colors = value.filter(
+    (item): item is string => typeof item === "string" && HEX_COLOR.test(item),
+  );
+  return [...new Set(colors)].slice(0, 8);
+}
+
+function referenceImage(value: unknown): string | undefined {
+  return typeof value === "string"
+    && value.length <= MAX_REFERENCE_DATA_URI_LENGTH
+    && REFERENCE_DATA_URI.test(value)
     ? value
     : undefined;
 }
@@ -92,18 +107,20 @@ export function parseAiRequest(value: unknown): ParsedAiRequest | null {
   if (!isRecord(value) || typeof value.prompt !== "string") return null;
   const prompt = value.prompt.trim().slice(0, 1800);
   if (!prompt) return null;
+  const parsedReference = referenceImage(value.referenceImage);
+  if (value.referenceImage !== undefined && !parsedReference) return null;
 
   return {
-    baseColor: typeof value.baseColor === "string" ? value.baseColor : "#f7dce5",
+    baseColor: typeof value.baseColor === "string" && HEX_COLOR.test(value.baseColor)
+      ? value.baseColor
+      : DEFAULT_BASE_COLOR,
     forceDiffusion: value.forceDiffusion === true,
     finish: nailFinish(value.finish),
     length: nailLength(value.length),
     prompt,
     qualityMode: qualityMode(value.qualityMode),
-    referenceImage: typeof value.referenceImage === "string"
-      ? value.referenceImage
-      : undefined,
-    referencePalette: stringArray(value.referencePalette),
+    referenceImage: parsedReference,
+    referencePalette: colorArray(value.referencePalette),
     selectedFinger: finger(value.selectedFinger),
     shape: nailShape(value.shape),
   };

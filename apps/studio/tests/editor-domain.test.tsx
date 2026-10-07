@@ -20,7 +20,10 @@ import {
   PRECISION_ZOOM_MAX,
   PRECISION_ZOOM_MIN,
 } from "../src/features/editor/domain/precision";
-import { createProjectSvg } from "../src/features/editor/services/export-project";
+import {
+  createNailSvg,
+  createProjectSvg,
+} from "../src/features/editor/services/export-project";
 import {
   parseStoredProject,
   parseRecentAssetIds,
@@ -58,6 +61,18 @@ test("undo and redo restore the complete project snapshot", () => {
   assert.equal(undone.project.nails["right-index"].length, "long");
   assert.equal(redone.project.nails["right-index"].shape, "square");
   assert.equal(redone.project.nails["right-index"].length, "short");
+});
+
+test("undo clears a selection when its layer no longer exists", () => {
+  const added = editorReducer(createInitialEditorState(), {
+    type: "add-layer",
+    layer: createLayerFromAsset(ASSET_DEFINITIONS[0], "temporary-layer"),
+  });
+  const undone = editorReducer(added, { type: "undo" });
+
+  assert.equal(added.selectedLayerId, "temporary-layer");
+  assert.equal(undone.project.nails[undone.selectedNailId].layers.length, 0);
+  assert.equal(undone.selectedLayerId, null);
 });
 
 test("apply to all is one undoable domain command", () => {
@@ -116,6 +131,15 @@ test("PNG source SVG contains both hand rows and all ten nails", () => {
   assert.match(svg, /NUVII STUDIO/);
   assert.match(svg, /Gradient Base Set/);
   assert.equal(svg.match(/<clipPath/g)?.length, 10);
+});
+
+test("single-nail export is transparent, clipped, and independently sized", () => {
+  const nail = createInitialEditorState().project.nails["right-index"];
+  const svg = createNailSvg(nail);
+
+  assert.match(svg, /width="520" height="760"/);
+  assert.equal(svg.match(/<clipPath/g)?.length, 1);
+  assert.doesNotMatch(svg, /<rect/);
 });
 
 test("asset catalogue covers every Phase 3 artwork family", () => {
